@@ -78,13 +78,18 @@ export function Loader() {
   return (
     <motion.div
       className="loader"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="loader-title"
       initial={{ opacity: 1 }}
       exit={{ opacity: 0, scale: 1.04 }}
       transition={{ duration: 0.45 }}
     >
       <div className="loader-card">
         <CoffeeCup level={level} />
-        <h1 className="loader-title">{portfolio.name}&rsquo;s room</h1>
+        <h2 className="loader-title" id="loader-title">
+          {portfolio.name}&rsquo;s room
+        </h2>
         <p className="loader-sub">{portfolio.title}</p>
         <div className="loader-action" aria-live="polite">
           {ready ? (

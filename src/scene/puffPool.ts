@@ -5,7 +5,7 @@
 
 export const MAX_PUFFS = 80
 
-export interface Particle {
+interface Particle {
   x: number
   y: number
   z: number

@@ -1,4 +1,4 @@
-import type { Portfolio } from './types'
+import type { Portfolio } from './types.ts'
 
 /**
  * ALL personal content for the site lives here. The 3D room, the panels and the

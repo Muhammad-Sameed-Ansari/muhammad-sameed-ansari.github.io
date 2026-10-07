@@ -1,18 +1,14 @@
 import { PerformanceMonitor } from '@react-three/drei'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { Suspense, useEffect, useRef, useState } from 'react'
-import { Experience } from './scene/Experience'
-import { useKeyboardControls } from './UI/useKeyboardControls'
-import { WorldOverlay } from './UI/WorldOverlay'
-import { HUD } from './UI/HUD'
-import { Panels } from './Panels/Panels'
 import { wave } from './Character/commands'
 import { portfolio } from './content/portfolio'
+import { Panels } from './Panels/Panels'
+import { Experience } from './scene/Experience'
 import { useStore } from './store/useStore'
-import { char } from './Character/runtime'
-
-// TEMP debug handle, removed before the final build.
-if (import.meta.env.DEV) Object.assign(window, { __room: { char, useStore } })
+import { HUD } from './UI/HUD'
+import { useKeyboardControls } from './UI/useKeyboardControls'
+import { WorldOverlay } from './UI/WorldOverlay'
 
 /** Marks loading as complete once the scene has rendered a few frames (shaders compiled). */
 function ReadySignal() {
@@ -45,7 +41,8 @@ export default function RoomApp() {
   }, [])
 
   return (
-    <div className={`room ${night ? 'is-night' : ''}`}>
+    <main className={`room ${night ? 'is-night' : ''}`}>
+      <h1 className="visually-hidden">{portfolio.name}&rsquo;s interactive room</h1>
       <Canvas
         className="room-canvas"
         shadows="percentage"
@@ -54,7 +51,8 @@ export default function RoomApp() {
         camera={{ fov: 30, near: 0.1, far: 80, position: [12, 11, 12] }}
         gl={{ antialias: true, powerPreference: 'high-performance' }}
         onCreated={() => useStore.getState().setProgress(0.8)}
-        aria-label="Interactive 3D room. Use the quick navigation buttons or the classic view to browse content."
+        role="img"
+        aria-label="A cartoon developer bedroom. Use the section buttons at the bottom, or the classic view, to browse the content."
       >
         <PerformanceMonitor onDecline={() => setDpr(1.25)} onIncline={() => setDpr(2)} />
         <Suspense fallback={null}>
@@ -65,6 +63,6 @@ export default function RoomApp() {
       <WorldOverlay />
       <HUD />
       <Panels />
-    </div>
+    </main>
   )
 }

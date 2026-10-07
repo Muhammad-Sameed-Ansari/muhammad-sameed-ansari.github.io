@@ -105,7 +105,10 @@ export function PanelShell({
           ✕
         </button>
       </header>
-      <div className="panel-body">{children}</div>
+      {/* Focusable so keyboard users can scroll long panels. */}
+      <div className="panel-body" tabIndex={0}>
+        {children}
+      </div>
     </Dialog>
   )
 }

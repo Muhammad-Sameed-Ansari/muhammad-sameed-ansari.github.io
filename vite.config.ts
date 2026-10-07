@@ -1,6 +1,6 @@
 import react from '@vitejs/plugin-react'
 import { defineConfig, type Plugin } from 'vite'
-import { portfolio } from './src/content/portfolio'
+import { portfolio } from './src/content/portfolio.ts'
 
 const escapeHtml = (s: string) =>
   s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
@@ -17,15 +17,14 @@ function portfolioHtml(): Plugin {
     NAME: p.name,
     DESCRIPTION: p.seo.description,
     SITE_URL: p.seo.siteUrl,
-    OG_IMAGE: new URL('/og.png', p.seo.siteUrl).href,
+    OG_IMAGE: new URL('og.png', p.seo.siteUrl.replace(/\/?$/, '/')).href,
   }
   const noscript = [
     `<h1>${escapeHtml(p.name)}: ${escapeHtml(p.title)}</h1>`,
     ...p.bio.map((para) => `<p>${escapeHtml(para)}</p>`),
     '<h2>Projects</h2><ul>',
     ...p.projects.map(
-      (proj) =>
-        `<li><strong>${escapeHtml(proj.title)}</strong>: ${escapeHtml(proj.tagline)}</li>`,
+      (proj) => `<li><strong>${escapeHtml(proj.title)}</strong>: ${escapeHtml(proj.tagline)}</li>`,
     ),
     '</ul>',
     `<p>Contact: <a href="mailto:${escapeHtml(p.email)}">${escapeHtml(p.email)}</a></p>`,
@@ -47,4 +46,18 @@ function portfolioHtml(): Plugin {
 
 export default defineConfig({
   plugins: [react(), portfolioHtml()],
+  build: {
+    rolldownOptions: {
+      output: {
+        // Keep the 3D libraries in their own long-cached chunk; it is only fetched for the room.
+        codeSplitting: {
+          groups: [
+            { name: 'three', test: /node_modules[\\/](three|@react-three|three-stdlib|maath)/ },
+          ],
+        },
+      },
+    },
+    // three.js + React Three Fiber are ~900 kB minified (~250 kB gzipped) and load lazily.
+    chunkSizeWarningLimit: 1000,
+  },
 })

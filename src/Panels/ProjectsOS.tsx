@@ -2,6 +2,7 @@ import { AnimatePresence, motion, useDragControls } from 'motion/react'
 import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { closeSection } from '../Character/commands'
 import { portfolio } from '../content/portfolio'
+import { asset } from '../lib/asset'
 import type { Project } from '../content/types'
 import { sfx } from '../lib/sound'
 import { Dialog } from './Dialog'
@@ -30,7 +31,7 @@ function ProjectBody({ project }: { project: Project }) {
       {count > 0 && (
         <div className="os-gallery">
           <img
-            src={project.images[shot]}
+            src={asset(project.images[shot])}
             alt={`${project.title}, screenshot ${shot + 1} of ${count}`}
             loading="lazy"
             width={640}

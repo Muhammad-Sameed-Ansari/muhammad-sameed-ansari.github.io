@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { dateRange, LEVELS } from '../content/format'
 import { portfolio } from '../content/portfolio'
+import { asset } from '../lib/asset'
 import type { TimelineEntry } from '../content/types'
 import { hasWebGL } from '../lib/media'
 import { AvatarPortrait } from '../Panels/AvatarPortrait'
@@ -75,7 +76,7 @@ export default function ClassicView() {
             </p>
           ))}
           <div className="c-actions">
-            <a className="btn btn-primary" href={p.resumeUrl} download>
+            <a className="btn btn-primary" href={asset(p.resumeUrl)} download>
               Download résumé (PDF)
             </a>
             <a className="btn" href={`mailto:${p.email}`}>
@@ -95,7 +96,7 @@ export default function ClassicView() {
             {p.projects.map((proj) => (
               <li key={proj.id} className="c-project">
                 {proj.images[0] && (
-                  <img src={proj.images[0]} alt="" loading="lazy" width={640} height={400} />
+                  <img src={asset(proj.images[0])} alt="" loading="lazy" width={640} height={400} />
                 )}
                 <div className="c-project-body">
                   <h3>

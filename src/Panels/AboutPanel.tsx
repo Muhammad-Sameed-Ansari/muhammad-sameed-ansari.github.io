@@ -1,5 +1,6 @@
 import { openSection } from '../Character/commands'
 import { portfolio } from '../content/portfolio'
+import { asset } from '../lib/asset'
 import { AvatarPortrait } from './AvatarPortrait'
 import { PanelShell } from './Dialog'
 
@@ -22,7 +23,7 @@ export default function AboutPanel() {
             <p key={p}>{p}</p>
           ))}
           <div className="about-actions">
-            <a className="btn btn-primary" href={portfolio.resumeUrl} download>
+            <a className="btn btn-primary" href={asset(portfolio.resumeUrl)} download>
               Download résumé (PDF)
             </a>
             <button className="btn" onClick={() => openSection('contact')}>

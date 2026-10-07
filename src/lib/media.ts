@@ -15,10 +15,6 @@ function useMediaQuery(query: string) {
 export const usePrefersReducedMotion = () => useMediaQuery('(prefers-reduced-motion: reduce)')
 export const useCoarsePointer = () => useMediaQuery('(pointer: coarse)')
 
-export function prefersReducedMotion() {
-  return window.matchMedia('(prefers-reduced-motion: reduce)').matches
-}
-
 export function hasWebGL() {
   try {
     const canvas = document.createElement('canvas')

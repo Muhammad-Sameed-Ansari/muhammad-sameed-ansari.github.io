@@ -49,6 +49,11 @@
   line-height: 1.6;
 }
 
+.panel-body:focus-visible {
+  outline-offset: -6px;
+  border-radius: 0 0 22px 22px;
+}
+
 .panel-lede {
   max-width: 60ch;
   margin: 0 0 16px;
