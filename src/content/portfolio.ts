@@ -226,6 +226,6 @@ export const portfolio: Portfolio = {
   seo: {
     description:
       'Explore my cartoon developer room: walk around, open my laptop to see projects, browse the bookshelf for skills and say hi.', // TODO: replace
-    siteUrl: 'https://example.com', // TODO: replace with your deployed URL
+    siteUrl: 'https://muhammad-sameed-ansari.github.io',
   },
 }

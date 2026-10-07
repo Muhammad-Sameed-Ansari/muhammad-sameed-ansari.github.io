@@ -96,6 +96,10 @@ server, open the room in a 1200×630 browser window, enter, and take a screensho
 
 The site is fully static. There is no backend, and the contact form uses `mailto:`.
 
+This repo is set up for **GitHub Pages**: `.github/workflows/deploy.yml` builds and publishes
+the site every time you push to `main`. In the repository settings, under
+**Settings → Pages → Build and deployment**, choose **GitHub Actions** as the source.
+
 - **Vercel**: import the repo. It detects Vite (build `npm run build`, output `dist`).
 - **Netlify**: build command `npm run build`, publish directory `dist`.
 - **GitHub Pages**: for a user site (`username.github.io`) or a custom domain, publish
