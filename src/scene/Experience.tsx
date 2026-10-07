@@ -8,6 +8,7 @@ import { Room } from '../Room/Room'
 import { useStore } from '../store/useStore'
 import { AnchorProjector } from './AnchorProjector'
 import { CameraRig } from './CameraRig'
+import { InteractHint } from './InteractHint'
 import { Lighting } from './Lighting'
 import { Puffs } from './Puffs'
 
@@ -32,6 +33,7 @@ export function Experience() {
       <Outside />
       <Character />
       <ClickMarker />
+      <InteractHint />
       <Puffs />
     </>
   )

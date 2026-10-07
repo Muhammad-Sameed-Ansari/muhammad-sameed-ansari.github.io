@@ -4,7 +4,6 @@ import { RBox, Toon } from '../scene/primitives'
 import { floorTexture } from '../scene/textures'
 import { ROOM, RUG, WINDOW } from '../scene/layout'
 import { FairyLights } from './FairyLights'
-import { WindowFrame } from './WindowFrame'
 
 const WALL = '#fbe0cf'
 const WALL_SIDE = '#f6d2be'
@@ -114,7 +113,6 @@ export function Room() {
       <Slab from={[minX, 0, minZ]} to={[maxX, 0.14, minZ + 0.06]} color={TRIM} outline={0.012} />
       <Slab from={[minX, 0, minZ]} to={[minX + 0.06, 0.14, maxZ]} color={TRIM} outline={0.012} />
 
-      <WindowFrame />
       <FairyLights />
 
       {/* Rug */}

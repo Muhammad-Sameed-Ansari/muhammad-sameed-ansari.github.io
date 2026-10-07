@@ -1,25 +1,39 @@
-import { Suspense, lazy } from 'react'
+import { AnimatePresence, MotionConfig } from 'motion/react'
+import { Suspense, lazy, useEffect } from 'react'
 import { useStore } from './store/useStore'
+import { Loader } from './UI/Loader'
 
 const RoomApp = lazy(() => import('./RoomApp'))
+const ClassicView = lazy(() => import('./classic/ClassicView'))
 
 export function App() {
+  const mode = useStore((s) => s.mode)
   const entered = useStore((s) => s.entered)
-  const progress = useStore((s) => s.progress)
+
+  // Keep the back button working when switching between the room and classic view.
+  useEffect(() => {
+    const onPop = () => {
+      const classic = new URLSearchParams(window.location.search).get('view') === 'classic'
+      useStore.setState({ mode: classic ? 'classic' : 'room', panel: null, focus: null })
+    }
+    window.addEventListener('popstate', onPop)
+    return () => window.removeEventListener('popstate', onPop)
+  }, [])
+
   return (
-    <>
-      <Suspense fallback={null}>
-        <RoomApp />
-      </Suspense>
-      {!entered && (
-        <button
-          style={{ position: 'fixed', top: 20, left: 20, zIndex: 100 }}
-          disabled={progress < 1}
-          onClick={() => useStore.getState().enter()}
-        >
-          Enter ({Math.round(progress * 100)}%)
-        </button>
+    <MotionConfig reducedMotion="user">
+      {mode === 'classic' ? (
+        <Suspense fallback={null}>
+          <ClassicView />
+        </Suspense>
+      ) : (
+        <>
+          <Suspense fallback={null}>
+            <RoomApp />
+          </Suspense>
+          <AnimatePresence>{!entered && <Loader key="loader" />}</AnimatePresence>
+        </>
       )}
-    </>
+    </MotionConfig>
   )
 }

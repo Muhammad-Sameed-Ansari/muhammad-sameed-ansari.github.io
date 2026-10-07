@@ -110,12 +110,12 @@ export function interactNearest() {
   if (id) goToObject(id)
 }
 
-export function wave(text?: string) {
+export function wave(text?: string, ms?: number) {
   if (char.sitting) return
   noteActivity()
   playOneShot('wave', 2)
   sfx.pop()
-  if (text) store().say(text)
+  if (text) store().say(text, ms)
 }
 
 export function triggerEasterEgg(egg: EasterEgg) {

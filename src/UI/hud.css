@@ -1,0 +1,284 @@
+.hud {
+  position: absolute;
+  inset: 0;
+  z-index: 40;
+  pointer-events: none;
+}
+
+.hud > * {
+  pointer-events: auto;
+}
+
+.hud-top {
+  position: absolute;
+  top: max(14px, env(safe-area-inset-top));
+  left: 16px;
+  right: 16px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  pointer-events: none;
+}
+
+.hud-top > * {
+  pointer-events: auto;
+}
+
+.hud-badge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 16px 6px 6px;
+  background: var(--paper) var(--paper-texture);
+  border: 3px solid var(--ink);
+  border-radius: 999px;
+  box-shadow: var(--shadow-sm);
+  transform: rotate(-1.5deg);
+}
+
+.hud-avatar {
+  width: 44px;
+  height: 44px;
+  flex: none;
+  border: 2px solid var(--ink);
+  border-radius: 50%;
+}
+
+.hud-name {
+  margin: 0;
+  font: 700 18px/1.1 var(--font-display);
+}
+
+.hud-title {
+  margin: 1px 0 0;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink-soft);
+}
+
+.hud-tools {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.hud-classic {
+  min-height: 44px;
+  font-size: 15px;
+}
+
+.hud-hint {
+  position: absolute;
+  left: 50%;
+  bottom: calc(108px + env(safe-area-inset-bottom));
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: max-content;
+  max-width: calc(100% - 32px);
+  margin: 0;
+  padding: 8px 14px;
+  font-weight: 700;
+  font-size: 14px;
+  text-align: center;
+  background: var(--paper);
+  border: 3px solid var(--ink);
+  border-radius: 14px;
+  box-shadow: var(--shadow-sm);
+  translate: -50% 0;
+}
+
+/* ---------- Dock ---------- */
+
+.hud-dock {
+  position: absolute;
+  left: 50%;
+  bottom: max(16px, env(safe-area-inset-bottom));
+  display: flex;
+  gap: 6px;
+  padding: 6px;
+  background: var(--paper) var(--paper-texture);
+  border: 3px solid var(--ink);
+  border-radius: 24px;
+  box-shadow: var(--shadow);
+  translate: -50% 0;
+}
+
+.dock-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  min-width: 76px;
+  padding: 8px 10px 6px;
+  font: 600 14px/1 var(--font-display);
+  background: transparent;
+  border: 2px solid transparent;
+  border-radius: 16px;
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    transform 0.2s var(--ease-bounce);
+}
+
+.dock-btn:hover {
+  background: var(--paper-2);
+  transform: translateY(-3px);
+}
+
+.dock-btn[aria-current='true'] {
+  background: var(--butter);
+  border-color: var(--ink);
+}
+
+.dock-emoji {
+  font-size: 24px;
+  transition: transform 0.25s var(--ease-bounce);
+}
+
+.dock-btn:hover .dock-emoji {
+  transform: scale(1.2) rotate(-8deg);
+}
+
+/* ---------- Help ---------- */
+
+.help-card {
+  position: absolute;
+  top: 78px;
+  right: 16px;
+  width: min(380px, calc(100% - 32px));
+  padding: 18px 20px 20px;
+  background: var(--paper) var(--paper-texture);
+  border: 3px solid var(--ink);
+  border-radius: 22px;
+  box-shadow: var(--shadow);
+}
+
+.help-card h2 {
+  margin: 0 0 8px;
+  font: 700 22px var(--font-display);
+}
+
+.help-card h3 {
+  margin: 14px 0 8px;
+  font: 600 17px var(--font-display);
+}
+
+.help-list {
+  margin: 0;
+  padding-left: 18px;
+  line-height: 1.9;
+}
+
+.help-list .keycap {
+  margin: 0 1px;
+}
+
+.help-eggs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.help-eggs .btn {
+  min-height: 38px;
+  padding: 6px 12px;
+  font-size: 14px;
+}
+
+.help-done {
+  width: 100%;
+  margin-top: 16px;
+}
+
+/* ---------- Joystick ---------- */
+
+.joystick {
+  position: absolute;
+  left: 20px;
+  bottom: calc(112px + env(safe-area-inset-bottom));
+  display: grid;
+  place-items: center;
+  width: 128px;
+  height: 128px;
+  background: rgb(255 250 240 / 0.7);
+  border: 3px solid var(--ink);
+  border-radius: 50%;
+  touch-action: none;
+}
+
+.joystick-knob {
+  width: 52px;
+  height: 52px;
+  background: var(--butter);
+  border: 3px solid var(--ink);
+  border-radius: 50%;
+  box-shadow: var(--shadow-sm);
+  pointer-events: none;
+}
+
+/* ---------- Small screens ---------- */
+
+@media (max-width: 640px) {
+  .hud-badge {
+    padding-right: 12px;
+  }
+
+  .hud-avatar {
+    width: 36px;
+    height: 36px;
+  }
+
+  .hud-name {
+    font-size: 16px;
+  }
+
+  .hud-title {
+    font-size: 12px;
+  }
+
+  .hud-tools .icon-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 17px;
+  }
+
+  .hud-classic {
+    display: none;
+  }
+
+  .hud-dock {
+    left: 16px;
+    right: 16px;
+    justify-content: space-between;
+    gap: 2px;
+    translate: none;
+  }
+
+  .dock-btn {
+    flex: 1;
+    min-width: 0;
+    padding: 6px 2px;
+    font-size: 11px;
+  }
+
+  .dock-emoji {
+    font-size: 22px;
+  }
+
+  .hud-hint {
+    bottom: calc(96px + env(safe-area-inset-bottom));
+    font-size: 13px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dock-btn,
+  .dock-emoji {
+    transition: none;
+  }
+}

@@ -16,7 +16,7 @@ const ZOOM_MIN = 0.62
 const ZOOM_MAX = 1.3
 
 /** Over-the-shoulder close-up of the laptop screen. */
-const LAPTOP_CAM = new Vector3(0.3, 1.55, -2.0)
+const LAPTOP_CAM = new Vector3(0.2, 1.38, -2.2)
 const LAPTOP_LOOK = new Vector3(-0.45, 0.85, -3.4)
 
 const clamp = (v: number, lo: number, hi: number) => Math.min(hi, Math.max(lo, v))

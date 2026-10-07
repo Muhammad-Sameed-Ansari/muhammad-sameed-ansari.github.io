@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" width="640" height="400">
+<rect width="640" height="400" fill="#ffd6a5"/>
+<circle cx="560" cy="60" r="90" fill="#fff" opacity=".25"/><circle cx="60" cy="360" r="120" fill="#fff" opacity=".2"/>
+<g stroke="#2d2541" stroke-width="5" stroke-linejoin="round">
+<rect x="230" y="30" width="180" height="336" rx="30" fill="#fffaf0"/>
+<rect x="290" y="44" width="60" height="10" rx="5" fill="#2d2541"/>
+<rect x="250" y="76" width="140" height="120" rx="18" fill="#ffd6a5"/>
+<rect x="250" y="212" width="140" height="34" rx="12" fill="#fff"/><rect x="250" y="256" width="140" height="34" rx="12" fill="#fff"/><rect x="250" y="300" width="140" height="44" rx="22" fill="#ffd166"/>
+</g>
+<text x="320" y="152" text-anchor="middle" font-size="54">☕</text>
+<text x="320" y="329" text-anchor="middle" font-family="Fredoka, Nunito, sans-serif" font-size="18" font-weight="700" fill="#2d2541">BrewLog</text>
+<g stroke="#2d2541" stroke-width="5" fill="#fffaf0"><rect x="80" y="120" width="110" height="80" rx="16" transform="rotate(-8 135 160)"/><rect x="450" y="200" width="110" height="80" rx="16" transform="rotate(7 505 240)"/></g>
+<text x="135" y="172" text-anchor="middle" font-size="34" transform="rotate(-8 135 160)">✨</text><text x="505" y="252" text-anchor="middle" font-size="34" transform="rotate(7 505 240)">💬</text>
+<text x="320" y="388" text-anchor="middle" font-family="Fredoka, Nunito, sans-serif" font-size="14" font-weight="700" fill="#2d2541" opacity=".55">Placeholder screenshot. Replace in /public/projects</text>
+</svg>
