@@ -1,0 +1,141 @@
+:root {
+  --ink: #2d2541;
+  --ink-soft: #5a5170;
+  --paper: #fffaf0;
+  --paper-2: #fff1df;
+  --coral: #ff8a7a;
+  --coral-strong: #c43d2f;
+  --mint: #8fdcc2;
+  --butter: #ffd166;
+  --sky: #9fd3ff;
+  --lavender: #cbb6f5;
+  --pink: #ffc2cf;
+  --shadow: 4px 4px 0 var(--ink);
+  --shadow-sm: 2px 2px 0 var(--ink);
+  --radius: 18px;
+  --font-display: 'Fredoka', 'Nunito', system-ui, sans-serif;
+  --font-body: 'Nunito', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --bg-day: radial-gradient(circle at 30% 20%, #fff3e6 0%, #ffe0d2 45%, #f9c9c9 100%);
+  --bg-night: radial-gradient(circle at 30% 20%, #3b3470 0%, #24204a 55%, #15122e 100%);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: #ffe3d3;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 3px;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ---------- Room ---------- */
+
+.room {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  background: var(--bg-day);
+  touch-action: none;
+}
+
+.room::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--bg-night);
+  opacity: 0;
+  transition: opacity 1.2s ease;
+}
+
+.room.is-night::before {
+  opacity: 1;
+}
+
+.room-canvas {
+  position: absolute !important;
+  inset: 0;
+}
+
+/* ---------- Speech bubble ---------- */
+
+.world-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.world-anchor {
+  position: absolute;
+  top: 0;
+  left: 0;
+  will-change: transform;
+}
+
+.world-anchor-inner {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transform: translateX(-50%);
+}
+
+.speech-bubble {
+  position: relative;
+  width: max-content;
+  max-width: min(280px, 70vw);
+  padding: 10px 14px;
+  background: var(--paper);
+  border: 3px solid var(--ink);
+  border-radius: 16px;
+  box-shadow: var(--shadow-sm);
+  font: 600 15px/1.35 var(--font-body);
+  text-align: center;
+  transform-origin: 50% 100%;
+  user-select: none;
+}
+
+.speech-bubble::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -11px;
+  width: 16px;
+  height: 16px;
+  background: var(--paper);
+  border-right: 3px solid var(--ink);
+  border-bottom: 3px solid var(--ink);
+  transform: translateX(-50%) rotate(45deg);
+}
