@@ -20,7 +20,7 @@ export function DeskLamp(props: Omit<ThreeElements['group'], 'ref'>) {
     const on = env.lamp
     if (light.current) light.current.intensity = on * 3.2
     bulb.current?.color.lerpColors(BULB_OFF, BULB_ON, on)
-    if (cone.current) cone.current.opacity = on * 0.22
+    if (cone.current) cone.current.opacity = on * 0.12
   })
 
   return (

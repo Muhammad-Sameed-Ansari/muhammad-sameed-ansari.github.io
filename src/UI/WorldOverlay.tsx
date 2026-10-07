@@ -48,7 +48,9 @@ export function WorldOverlay() {
   const panel = useStore((s) => s.panel)
   const entered = useStore((s) => s.entered)
   const meow = useCatMeow()
-  const labelId = !entered || panel ? null : (hoverId ?? nearId)
+  const active = !entered || panel ? null : (hoverId ?? nearId)
+  // The cat's own bubble takes the label's spot while it meows.
+  const labelId = active === 'cat' && meow ? null : active
 
   return (
     <div className="world-overlay">

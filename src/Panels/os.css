@@ -128,10 +128,10 @@
 .os-window {
   position: absolute;
   top: 6%;
-  left: max(140px, 22%);
+  left: 252px;
   display: flex;
   flex-direction: column;
-  width: min(600px, calc(100% - 160px));
+  width: min(620px, calc(100% - 270px));
   max-height: 88%;
   background: var(--paper);
   border: 3px solid var(--ink);
