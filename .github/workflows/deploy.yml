@@ -17,6 +17,8 @@ concurrency:
 
 jobs:
   build:
+    # Free GitHub accounts can only publish Pages from public repositories.
+    if: ${{ !github.event.repository.private }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
