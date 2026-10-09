@@ -12,8 +12,6 @@ export function AvatarPortrait({
   className?: string
   title?: string
 }) {
-  const { skin, hairColor: hair, hairStyle } = config
-  const stroke = { stroke: INK, strokeWidth: 5, strokeLinejoin: 'round' as const }
   return (
     <svg
       className={className}
@@ -23,6 +21,20 @@ export function AvatarPortrait({
       aria-label={title}
     >
       <circle cx="100" cy="100" r="100" fill="#cfe9ff" />
+      <AvatarBust config={config} />
+    </svg>
+  )
+}
+
+/**
+ * The head and shoulders on their own, in a 200×200 space, so other scenes can place
+ * them (the loader adds arms and a mug). The hoodie runs past the bottom edge.
+ */
+export function AvatarBust({ config }: { config: AvatarConfig }) {
+  const { skin, hairColor: hair, hairStyle } = config
+  const stroke = { stroke: INK, strokeWidth: 5, strokeLinejoin: 'round' as const }
+  return (
+    <g>
       {/* Back hair for long styles */}
       {hairStyle === 'long' && (
         <path d="M40 92 Q36 168 62 176 L138 176 Q164 168 160 92 Z" fill={hair} {...stroke} />
@@ -155,6 +167,6 @@ export function AvatarPortrait({
           <rect x="154" y="80" width="22" height="36" rx="10" fill="#ff8a80" />
         </g>
       )}
-    </svg>
+    </g>
   )
 }

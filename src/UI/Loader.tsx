@@ -1,58 +1,102 @@
 import { motion } from 'motion/react'
 import { useEffect, useState } from 'react'
 import { portfolio } from '../content/portfolio'
+import { AvatarBust } from '../Panels/AvatarPortrait'
 import { usePrefersReducedMotion } from '../lib/media'
 import { unlockAudio } from '../lib/sound'
 import { useStore } from '../store/useStore'
 import './loader.css'
 
-/** Coffee cup whose coffee level shows loading progress. */
-function CoffeeCup({ level }: { level: number }) {
+const INK = '#2d2541'
+const CUP = 'M46 54 h96 l-8 78 a12 12 0 0 1 -12 10 h-56 a12 12 0 0 1 -12 -10 z'
+const CUP_HANDLE = 'M140 70 h12 a20 20 0 0 1 0 40 h-16'
+
+/**
+ * The avatar says hi from the loading card: one hand waves (once the room is ready),
+ * the other holds a mug whose coffee level shows loading progress.
+ */
+function LoaderAvatar({ level, ready }: { level: number; ready: boolean }) {
+  const { avatar } = portfolio
   const top = 132 - level * 78
+  const outline = { stroke: INK, strokeWidth: 4, strokeLinejoin: 'round' as const }
   return (
-    <svg className="loader-cup" viewBox="0 0 200 180" aria-hidden="true">
+    <svg
+      className={`loader-avatar${ready ? ' is-ready' : ''}`}
+      viewBox="0 0 260 248"
+      aria-hidden="true"
+    >
       <defs>
-        <clipPath id="cup-inside">
-          <path d="M46 54 h96 l-8 78 a12 12 0 0 1 -12 10 h-56 a12 12 0 0 1 -12 -10 z" />
+        <clipPath id="loader-frame">
+          <circle cx="130" cy="112" r="100" />
+        </clipPath>
+        <clipPath id="loader-cup-inside">
+          <path d={CUP} />
         </clipPath>
       </defs>
-      <g
-        className="loader-steam"
-        fill="none"
-        stroke="#2d2541"
-        strokeWidth="5"
-        strokeLinecap="round"
-      >
-        <path d="M78 40 q-8 -10 0 -20 t0 -18" />
-        <path d="M104 36 q-8 -10 0 -20 t0 -16" />
+      <circle cx="130" cy="112" r="100" fill="#cfe9ff" />
+      {/* Waving arm sits behind the bust so the sleeve grows out of the shoulder. */}
+      <g className="loader-wave">
+        <path
+          d="M84 196 Q50 178 42 140"
+          fill="none"
+          stroke={INK}
+          strokeWidth="24"
+          strokeLinecap="round"
+        />
+        <path
+          d="M84 196 Q50 178 42 140"
+          fill="none"
+          stroke={avatar.hoodie}
+          strokeWidth="16"
+          strokeLinecap="round"
+        />
+        <ellipse
+          cx="51"
+          cy="129"
+          rx="5"
+          ry="7"
+          transform="rotate(-30 51 129)"
+          fill={avatar.skin}
+          {...outline}
+        />
+        <circle cx="38" cy="125" r="13" fill={avatar.skin} {...outline} />
       </g>
-      <path
-        d="M140 70 h12 a20 20 0 0 1 0 40 h-16"
-        fill="none"
-        stroke="#2d2541"
-        strokeWidth="9"
-        strokeLinecap="round"
-      />
-      <path
-        d="M140 70 h12 a20 20 0 0 1 0 40 h-16"
-        fill="none"
-        stroke="#ff8a7a"
-        strokeWidth="4"
-        strokeLinecap="round"
-      />
-      <path d="M46 54 h96 l-8 78 a12 12 0 0 1 -12 10 h-56 a12 12 0 0 1 -12 -10 z" fill="#fffaf0" />
-      <g clipPath="url(#cup-inside)">
-        <rect className="loader-coffee" x="30" y={top} width="130" height="120" fill="#a0613d" />
-        <rect x="30" y={top} width="130" height="7" fill="#d9a07a" className="loader-coffee" />
+      <g clipPath="url(#loader-frame)">
+        <g transform="translate(30 14)">
+          <AvatarBust config={avatar} />
+        </g>
       </g>
+      {/* Mug arm, then the mug, then the hand around its handle. */}
       <path
-        d="M46 54 h96 l-8 78 a12 12 0 0 1 -12 10 h-56 a12 12 0 0 1 -12 -10 z"
+        d="M182 198 Q194 226 214 216"
         fill="none"
-        stroke="#2d2541"
-        strokeWidth="5"
-        strokeLinejoin="round"
+        stroke={INK}
+        strokeWidth="22"
+        strokeLinecap="round"
       />
-      <ellipse cx="94" cy="160" rx="64" ry="9" fill="#2d2541" opacity="0.15" />
+      <path
+        d="M182 198 Q194 226 214 216"
+        fill="none"
+        stroke={avatar.hoodie}
+        strokeWidth="14"
+        strokeLinecap="round"
+      />
+      <g transform="translate(124.7 162.3) scale(0.55)">
+        <g className="loader-steam" fill="none" stroke={INK} strokeWidth="6" strokeLinecap="round">
+          <path d="M78 40 q-8 -10 0 -20 t0 -18" />
+          <path d="M104 36 q-8 -10 0 -20 t0 -16" />
+        </g>
+        <path d={CUP_HANDLE} fill="none" stroke={INK} strokeWidth="13" strokeLinecap="round" />
+        <path d={CUP_HANDLE} fill="none" stroke="#ff8a7a" strokeWidth="6" strokeLinecap="round" />
+        <path d={CUP} fill="#fffaf0" />
+        <g clipPath="url(#loader-cup-inside)">
+          <rect className="loader-coffee" x="30" y={top} width="130" height="120" fill="#a0613d" />
+          <rect className="loader-coffee" x="30" y={top} width="130" height="9" fill="#d9a07a" />
+        </g>
+        <path d={CUP} fill="none" stroke={INK} strokeWidth="7" strokeLinejoin="round" />
+      </g>
+      <ellipse cx="216" cy="211" rx="10" ry="12" fill={avatar.skin} {...outline} />
+      <path d="M207 207 h6 M207 214 h6" stroke={INK} strokeWidth="3" strokeLinecap="round" />
     </svg>
   )
 }
@@ -86,9 +130,21 @@ export function Loader() {
       transition={{ duration: 0.45 }}
     >
       <div className="loader-card">
-        <CoffeeCup level={level} />
+        <div className="loader-hero">
+          <LoaderAvatar level={level} ready={ready} />
+          {ready && (
+            <motion.p
+              className="loader-bubble"
+              initial={reducedMotion ? false : { scale: 0.5, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ type: 'spring', stiffness: 420, damping: 18, delay: 0.1 }}
+            >
+              <span>Come on in,</span> <span>the coffee&rsquo;s ready!</span>
+            </motion.p>
+          )}
+        </div>
         <h2 className="loader-title" id="loader-title">
-          {portfolio.name}&rsquo;s room
+          {portfolio.name}
         </h2>
         <p className="loader-sub">{portfolio.title}</p>
         <div className="loader-action" aria-live="polite">

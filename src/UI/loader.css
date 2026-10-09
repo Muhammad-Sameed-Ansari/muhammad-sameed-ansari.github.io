@@ -22,10 +22,85 @@
   transform: rotate(-1deg);
 }
 
-.loader-cup {
-  width: 168px;
+.loader-hero {
+  --avatar-w: 210px;
+  position: relative;
+  align-self: stretch;
+  display: flex;
+  justify-content: center;
+  margin: -4px 0 6px;
+}
+
+.loader-avatar {
+  width: var(--avatar-w);
   height: auto;
-  margin-bottom: 6px;
+  overflow: visible;
+}
+
+/* Raised hand rocks from the shoulder a few times once the room is ready. */
+.loader-wave {
+  transform-box: view-box;
+  transform-origin: 84px 196px;
+}
+
+.loader-avatar.is-ready .loader-wave {
+  animation: wave 0.7s ease-in-out 0.15s 3;
+}
+
+@keyframes wave {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  30% {
+    transform: rotate(-12deg);
+  }
+  70% {
+    transform: rotate(9deg);
+  }
+}
+
+/* Speech bubble up and to the right of the head, tail pointing back at it. */
+.loader-bubble {
+  position: absolute;
+  top: 0;
+  left: calc(50% + var(--avatar-w) * 0.2);
+  margin: 0;
+  padding: 8px 12px;
+  font: 600 15px / 1.25 var(--font-display);
+  text-align: left;
+  background: #fff;
+  border: 3px solid var(--ink);
+  border-radius: 16px;
+  box-shadow: var(--shadow-sm);
+  transform-origin: 10% 100%;
+}
+
+.loader-bubble span {
+  display: block;
+  white-space: nowrap;
+}
+
+.loader-bubble::before,
+.loader-bubble::after {
+  content: '';
+  position: absolute;
+  left: 14px;
+  border-style: solid;
+  border-color: transparent;
+}
+
+.loader-bubble::before {
+  bottom: -14px;
+  border-width: 14px 14px 0 0;
+  border-top-color: var(--ink);
+}
+
+.loader-bubble::after {
+  bottom: -8px;
+  left: 17px;
+  border-width: 9px 9px 0 0;
+  border-top-color: #fff;
 }
 
 .loader-coffee {
@@ -84,8 +159,23 @@
   color: var(--ink-soft);
 }
 
+@media (max-width: 400px) {
+  .loader-hero {
+    --avatar-w: 180px;
+  }
+
+  /* Pin to the card's edge instead, so the bubble never pokes past the border. */
+  .loader-bubble {
+    left: auto;
+    right: -14px;
+    padding: 7px 10px;
+    font-size: 14px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .loader-steam path {
+  .loader-steam path,
+  .loader-avatar.is-ready .loader-wave {
     animation: none;
   }
 }
