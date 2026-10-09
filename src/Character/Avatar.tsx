@@ -1,6 +1,6 @@
 import { Outlines } from '@react-three/drei'
 import type { RefObject } from 'react'
-import { DoubleSide } from 'three'
+import { DoubleSide, ExtrudeGeometry, Path, Shape } from 'three'
 import type { AvatarConfig } from '../content/types'
 import { Ball, Cap, Cyl, RBox, Toon } from '../scene/primitives'
 import { INK, gradientMap } from '../scene/toon'
@@ -17,6 +17,30 @@ const shade = (hex: string, amount: number) => {
 
 const HEAD_Y = 0.3
 const HEAD_R = 0.33
+
+function roundedRect(p: Shape | Path, x: number, y: number, w: number, h: number, r: number) {
+  p.moveTo(x + r, y)
+  p.lineTo(x + w - r, y)
+  p.quadraticCurveTo(x + w, y, x + w, y + r)
+  p.lineTo(x + w, y + h - r)
+  p.quadraticCurveTo(x + w, y + h, x + w - r, y + h)
+  p.lineTo(x + r, y + h)
+  p.quadraticCurveTo(x, y + h, x, y + h - r)
+  p.lineTo(x, y + r)
+  p.quadraticCurveTo(x, y, x + r, y)
+}
+
+/** Thin rounded-rectangle lens frame, built once and shared by both lenses. */
+function lensFrameGeometry(w: number, h: number, r: number, band: number) {
+  const outer = new Shape()
+  roundedRect(outer, -w / 2, -h / 2, w, h, r)
+  const hole = new Path()
+  roundedRect(hole, -w / 2 + band, -h / 2 + band, w - band * 2, h - band * 2, r - band / 2)
+  outer.holes.push(hole)
+  return new ExtrudeGeometry(outer, { depth: 0.012, bevelEnabled: false, curveSegments: 6 })
+}
+
+const RECT_LENS = lensFrameGeometry(0.18, 0.14, 0.028, 0.014)
 
 function HairCap({
   color,
@@ -293,14 +317,20 @@ export function Avatar({ config, rig }: { config: AvatarConfig; rig: RefObject<A
 
           {config.glasses && (
             <group position={[0, HEAD_Y - 0.01, 0.335]}>
-              {[0.115, -0.115].map((x) => (
-                <mesh key={x} position={[x, 0, 0]}>
-                  <torusGeometry args={[0.082, 0.014, 8, 24]} />
-                  <meshToonMaterial color={config.glassesColor} gradientMap={gradientMap} />
-                </mesh>
-              ))}
+              {[0.115, -0.115].map((x) =>
+                config.glassesShape === 'rectangle' ? (
+                  <mesh key={x} position={[x, 0, -0.006]} geometry={RECT_LENS}>
+                    <meshToonMaterial color={config.glassesColor} gradientMap={gradientMap} />
+                  </mesh>
+                ) : (
+                  <mesh key={x} position={[x, 0, 0]}>
+                    <torusGeometry args={[0.082, 0.014, 8, 24]} />
+                    <meshToonMaterial color={config.glassesColor} gradientMap={gradientMap} />
+                  </mesh>
+                ),
+              )}
               <Cyl
-                r={0.01}
+                r={config.glassesShape === 'rectangle' ? 0.008 : 0.01}
                 h={0.07}
                 color={config.glassesColor}
                 outline={false}

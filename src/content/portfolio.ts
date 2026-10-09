@@ -35,7 +35,8 @@ export const portfolio: Portfolio = {
     hairColor: '#2b2522',
     eyeColor: '#3b2a24',
     glasses: true,
-    glassesColor: '#2d2541',
+    glassesShape: 'rectangle', // 'round' | 'rectangle'
+    glassesColor: '#1c1a22',
     facialHair: 'stubble', // 'none' | 'stubble' | 'beard' | 'mustache'
     headphones: false,
     hoodie: '#9fb0c8',

@@ -8,6 +8,7 @@ export interface AvatarConfig {
   hairColor: string
   eyeColor: string
   glasses: boolean
+  glassesShape: 'round' | 'rectangle'
   glassesColor: string
   facialHair: FacialHair
   headphones: boolean

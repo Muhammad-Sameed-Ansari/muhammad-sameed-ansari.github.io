@@ -113,10 +113,24 @@ export function AvatarPortrait({
       <circle cx="81" cy="96" r="2.5" fill="#fff" />
       <circle cx="125" cy="96" r="2.5" fill="#fff" />
       {config.glasses && (
-        <g fill="none" stroke={config.glassesColor} strokeWidth="5">
-          <circle cx="78" cy="100" r="17" />
-          <circle cx="122" cy="100" r="17" />
-          <path d="M95 99 q5 -4 10 0" />
+        <g
+          fill="none"
+          stroke={config.glassesColor}
+          strokeWidth={config.glassesShape === 'rectangle' ? 3.5 : 5}
+        >
+          {config.glassesShape === 'rectangle' ? (
+            <>
+              <rect x="59" y="86" width="38" height="28" rx="6" />
+              <rect x="103" y="86" width="38" height="28" rx="6" />
+              <path d="M97 97 q3 -3 6 0" />
+            </>
+          ) : (
+            <>
+              <circle cx="78" cy="100" r="17" />
+              <circle cx="122" cy="100" r="17" />
+              <path d="M95 99 q5 -4 10 0" />
+            </>
+          )}
         </g>
       )}
       <ellipse cx="62" cy="120" rx="9" ry="5" fill="#ff9fa8" />
