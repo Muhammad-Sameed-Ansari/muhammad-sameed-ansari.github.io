@@ -128,7 +128,7 @@
 .os-window {
   position: absolute;
   top: 6%;
-  left: 252px;
+  right: 24px;
   display: flex;
   flex-direction: column;
   width: min(620px, calc(100% - 270px));
