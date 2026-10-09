@@ -44,10 +44,10 @@ Open http://localhost:5173. Other scripts:
 The 3D room, panels, classic view, page title and social-sharing tags all read from it.
 Every placeholder is marked `TODO: replace`. Fill in:
 
-1. `name`, `title`, `location`
+1. `name`, `shortName` (used in greetings), `title`, `location`
 2. `bio` (one string per paragraph) and `funFacts`
 3. `email` and `socials` (GitHub, LinkedIn, email; `icon` can also be `x`, `globe`, `dribbble`, `youtube`)
-4. `projects`: title, tagline, description, tech list, `liveUrl`/`repoUrl`, `year`, an emoji `icon` and a tile `color`.
+4. `projects`: title, tagline, description, an optional `role` (what you did on it), tech list, `liveUrl`/`repoUrl`, `year`, an emoji `icon` and a tile `color`.
    3 to 6 projects fit the laptop desktop best.
 5. `skills`: categories become shelves (the first four are shown on the 3D bookshelf); `level` is 1–5
 6. `experience` and `education`, newest first
@@ -57,7 +57,7 @@ Every placeholder is marked `TODO: replace`. Fill in:
 Then replace the files in `public/`:
 
 - `public/resume.pdf`: your résumé
-- `public/projects/*`: project screenshots. Use 16:10 images (for example 1280×800 WebP or
+- `public/projects/*`: project covers or screenshots. Use 16:10 images (for example 1280×800 WebP or
   PNG), and point each project's `images` array at them. The first image is the cover.
 - `public/og.png`: the 1200×630 link-preview image (see below)
 - `public/favicon.svg`: optional

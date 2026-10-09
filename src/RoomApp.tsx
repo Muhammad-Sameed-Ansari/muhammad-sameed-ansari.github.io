@@ -31,7 +31,7 @@ export default function RoomApp() {
     return useStore.subscribe((s, prev) => {
       if (s.entered && !prev.entered) {
         const tap = window.matchMedia('(pointer: coarse)').matches ? 'Tap' : 'Click'
-        const first = portfolio.name.split(' ')[0]
+        const first = portfolio.shortName
         setTimeout(
           () => wave(`Hey! I'm ${first}. ${tap} anywhere to walk around my room 👋`, 6000),
           450,

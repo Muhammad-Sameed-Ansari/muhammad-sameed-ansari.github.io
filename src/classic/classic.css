@@ -135,6 +135,12 @@ html.is-classic body {
   font-weight: 700;
 }
 
+.c-role {
+  font-size: 14.5px;
+  font-weight: 800;
+  color: var(--ink-soft);
+}
+
 .c-tech {
   font-size: 14.5px;
   color: var(--ink-soft);

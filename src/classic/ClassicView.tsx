@@ -104,6 +104,7 @@ export default function ClassicView() {
                     <span className="c-year">{proj.year}</span>
                   </h3>
                   <p className="c-tagline">{proj.tagline}</p>
+                  {proj.role && <p className="c-role">{proj.role}</p>}
                   <p>{proj.description}</p>
                   <p className="c-tech">
                     <span className="visually-hidden">Built with: </span>
@@ -112,7 +113,7 @@ export default function ClassicView() {
                   <p className="c-links">
                     {proj.liveUrl && (
                       <a href={proj.liveUrl} target="_blank" rel="noreferrer">
-                        Live demo<span className="visually-hidden"> of {proj.title}</span>
+                        Live site<span className="visually-hidden"> of {proj.title}</span>
                       </a>
                     )}
                     {proj.repoUrl && (

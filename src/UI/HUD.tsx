@@ -10,7 +10,7 @@ import { HelpCard } from './HelpCard'
 import { Joystick } from './Joystick'
 import './hud.css'
 
-const firstName = portfolio.name.split(' ')[0]
+const firstName = portfolio.shortName
 
 function FirstStepsHint() {
   const coarse = useCoarsePointer()

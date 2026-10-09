@@ -19,7 +19,7 @@ export interface AvatarConfig {
 export interface Social {
   label: string
   url: string
-  /** Short handle shown next to the label, e.g. "@alexrivera". */
+  /** Short handle shown next to the label, e.g. "@your-handle". */
   handle: string
   icon: 'github' | 'linkedin' | 'email' | 'x' | 'globe' | 'dribbble' | 'youtube'
 }
@@ -29,6 +29,8 @@ export interface Project {
   title: string
   tagline: string
   description: string
+  /** What you did on it, e.g. "Solo build" or "Team project: built the Schedule module". */
+  role?: string
   tech: string[]
   /** Paths under /public, e.g. "/projects/my-app-1.webp". The first one is the cover. */
   images: string[]
@@ -65,6 +67,8 @@ export interface TimelineEntry {
 
 export interface Portfolio {
   name: string
+  /** The name you go by, used in greetings and the laptop OS, e.g. "Alex". */
+  shortName: string
   /** Shown in the HUD, e.g. "Frontend Developer". */
   title: string
   location: string

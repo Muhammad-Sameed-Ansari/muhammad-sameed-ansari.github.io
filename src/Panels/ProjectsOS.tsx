@@ -8,7 +8,7 @@ import { sfx } from '../lib/sound'
 import { Dialog } from './Dialog'
 import './os.css'
 
-const firstName = portfolio.name.split(' ')[0]
+const firstName = portfolio.shortName
 
 type WindowId = { kind: 'project'; project: Project } | { kind: 'readme' } | { kind: 'trash' }
 
@@ -61,6 +61,7 @@ function ProjectBody({ project }: { project: Project }) {
         </div>
       )}
       <p className="os-tagline">{project.tagline}</p>
+      {project.role && <p className="os-role">{project.role}</p>}
       <p>{project.description}</p>
       <h4 className="os-subhead">Built with</h4>
       <ul className="chips">
@@ -71,7 +72,7 @@ function ProjectBody({ project }: { project: Project }) {
       <div className="os-links">
         {project.liveUrl && (
           <a className="btn btn-primary" href={project.liveUrl} target="_blank" rel="noreferrer">
-            Open live demo
+            Visit live site
           </a>
         )}
         {project.repoUrl && (
