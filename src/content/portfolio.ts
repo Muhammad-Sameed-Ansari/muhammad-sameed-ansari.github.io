@@ -28,17 +28,17 @@ export const portfolio: Portfolio = {
   resumeUrl: '/resume.pdf',
   email: 'sameedanxari@gmail.com',
 
-  // TODO: replace — make the avatar look like you.
+  // Matched to my photo. Options are listed in src/content/types.ts.
   avatar: {
-    skin: '#e8b48f',
-    hairStyle: 'short', // 'short' | 'curly' | 'long' | 'bun' | 'spiky' | 'buzz'
-    hairColor: '#2e2420',
-    eyeColor: '#2d2541',
+    skin: '#e3ab87',
+    hairStyle: 'swept', // 'short' | 'swept' | 'curly' | 'long' | 'bun' | 'spiky' | 'buzz'
+    hairColor: '#2b2522',
+    eyeColor: '#3b2a24',
     glasses: true,
     glassesColor: '#2d2541',
-    facialHair: 'none', // 'none' | 'beard' | 'mustache'
+    facialHair: 'stubble', // 'none' | 'stubble' | 'beard' | 'mustache'
     headphones: false,
-    hoodie: '#7c9cff',
+    hoodie: '#9fb0c8',
     pants: '#45406b',
     shoes: '#fffaf0',
   },

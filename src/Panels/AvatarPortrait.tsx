@@ -52,6 +52,13 @@ export function AvatarPortrait({
       <circle cx="40" cy="98" r="13" fill={skin} {...stroke} />
       <circle cx="160" cy="98" r="13" fill={skin} {...stroke} />
       <ellipse cx="100" cy="94" rx="62" ry="58" fill={skin} {...stroke} />
+      {config.facialHair === 'stubble' && (
+        <path
+          d="M46 106 Q54 152 100 152 Q146 152 154 106 Q142 136 100 138 Q58 136 46 106 Z M82 121 Q100 113 118 121 Q100 119 82 121 Z"
+          fill={hair}
+          opacity={0.2}
+        />
+      )}
       {config.facialHair === 'beard' && (
         <path
           d="M46 104 Q52 152 100 152 Q148 152 154 104 Q140 128 100 130 Q60 128 46 104 Z"
@@ -77,7 +84,9 @@ export function AvatarPortrait({
           d={
             hairStyle === 'buzz'
               ? 'M40 84 Q46 38 100 36 Q154 38 160 84 Q130 64 100 64 Q70 64 40 84 Z'
-              : 'M38 92 Q36 30 100 30 Q164 30 162 92 Q150 66 128 62 Q118 74 92 72 Q70 70 62 62 Q46 70 38 92 Z'
+              : hairStyle === 'swept'
+                ? 'M40 90 Q34 40 82 26 Q120 14 150 32 Q168 46 162 90 Q156 64 140 54 Q120 46 96 50 Q66 54 40 90 Z'
+                : 'M38 92 Q36 30 100 30 Q164 30 162 92 Q150 66 128 62 Q118 74 92 72 Q70 70 62 62 Q46 70 38 92 Z'
           }
           fill={hair}
           {...stroke}
@@ -85,12 +94,18 @@ export function AvatarPortrait({
       )}
       {hairStyle === 'bun' && <circle cx="100" cy="22" r="18" fill={hair} {...stroke} />}
       {/* Face */}
-      <path d="M68 82 q10 -6 20 0" fill="none" stroke={INK} strokeWidth="4" strokeLinecap="round" />
+      <path
+        d="M68 82 q10 -6 20 0"
+        fill="none"
+        stroke={hair}
+        strokeWidth="6"
+        strokeLinecap="round"
+      />
       <path
         d="M112 82 q10 -6 20 0"
         fill="none"
-        stroke={INK}
-        strokeWidth="4"
+        stroke={hair}
+        strokeWidth="6"
         strokeLinecap="round"
       />
       <ellipse cx="78" cy="100" rx="7" ry="9" fill={config.eyeColor} />

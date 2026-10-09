@@ -1,5 +1,5 @@
-export type HairStyle = 'short' | 'curly' | 'long' | 'bun' | 'spiky' | 'buzz'
-export type FacialHair = 'none' | 'beard' | 'mustache'
+export type HairStyle = 'short' | 'swept' | 'curly' | 'long' | 'bun' | 'spiky' | 'buzz'
+export type FacialHair = 'none' | 'stubble' | 'beard' | 'mustache'
 
 /** Everything that controls how the cartoon "you" looks. Colors are any CSS hex string. */
 export interface AvatarConfig {

@@ -58,6 +58,21 @@ function Hair({ style, color }: { style: AvatarConfig['hairStyle']; color: strin
           ))}
         </>
       )
+    case 'swept':
+      // Short sides, longer top swept up and back so the forehead shows.
+      return (
+        <>
+          <HairCap color={color} tilt={-0.6} length={0.44} />
+          <Ball
+            r={0.2}
+            color={color}
+            outline={0.014}
+            position={[0.04, HEAD_Y + 0.26, 0.09]}
+            rotation={[0.35, 0, -0.18]}
+            scale={[1.45, 0.55, 1.1]}
+          />
+        </>
+      )
     case 'curly':
       return (
         <>
@@ -267,8 +282,8 @@ export function Avatar({ config, rig }: { config: AvatarConfig; rig: RefObject<A
           {[0.115, -0.115].map((x) => (
             <Cap
               key={x}
-              r={0.012}
-              length={0.06}
+              r={0.016}
+              length={0.065}
               color={config.hairColor}
               outline={false}
               position={[x, HEAD_Y + 0.1, 0.3]}
@@ -296,6 +311,20 @@ export function Avatar({ config, rig }: { config: AvatarConfig; rig: RefObject<A
 
           <Hair style={config.hairStyle} color={config.hairColor} />
 
+          {config.facialHair === 'stubble' && (
+            // A faint shadow over the jaw and upper lip.
+            <mesh position={[0, HEAD_Y, 0]} scale={[1.06, 0.96, 1]}>
+              <sphereGeometry
+                args={[HEAD_R + 0.003, 28, 16, Math.PI / 2 - 1, 2, Math.PI * 0.56, Math.PI * 0.3]}
+              />
+              <meshBasicMaterial
+                color={config.hairColor}
+                transparent
+                opacity={0.16}
+                depthWrite={false}
+              />
+            </mesh>
+          )}
           {config.facialHair === 'beard' && (
             <Ball
               r={0.25}

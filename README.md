@@ -68,15 +68,15 @@ Edit `avatar` in `src/content/portfolio.ts`:
 
 ```ts
 avatar: {
-  skin: '#e8b48f',          // any hex color
-  hairStyle: 'short',       // 'short' | 'curly' | 'long' | 'bun' | 'spiky' | 'buzz'
-  hairColor: '#2e2420',
-  eyeColor: '#2d2541',
+  skin: '#e3ab87',          // any hex color
+  hairStyle: 'swept',       // 'short' | 'swept' | 'curly' | 'long' | 'bun' | 'spiky' | 'buzz'
+  hairColor: '#2b2522',
+  eyeColor: '#3b2a24',
   glasses: true,
   glassesColor: '#2d2541',
-  facialHair: 'none',       // 'none' | 'beard' | 'mustache'
+  facialHair: 'stubble',    // 'none' | 'stubble' | 'beard' | 'mustache'
   headphones: false,
-  hoodie: '#7c9cff',
+  hoodie: '#9fb0c8',
   pants: '#45406b',
   shoes: '#fffaf0',
 },
