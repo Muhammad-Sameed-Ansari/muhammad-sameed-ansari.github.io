@@ -1,0 +1,159 @@
+/* Pure CSS phone and tablet mockups. Sizes use container units so one frame works from a
+   small list thumbnail up to a full window. */
+
+.device {
+  --device-body: #4b4868;
+  container-type: inline-size;
+  width: 100%;
+}
+
+.device-body {
+  position: relative;
+  background: var(--device-body);
+  border: 3px solid var(--ink);
+  box-shadow: var(--shadow);
+}
+
+.device-phone .device-body {
+  padding: 4.5cqi;
+  border-radius: 16cqi;
+}
+
+.device-tablet .device-body {
+  padding: 3cqi;
+  border-radius: 5cqi;
+}
+
+/* Side buttons. */
+.device-phone .device-body::before,
+.device-phone .device-body::after {
+  content: '';
+  position: absolute;
+  width: 5px;
+  background: var(--ink);
+  border-radius: 3px;
+}
+
+.device-phone .device-body::before {
+  top: 22%;
+  left: -7px;
+  height: 11%;
+}
+
+.device-phone .device-body::after {
+  top: 28%;
+  right: -7px;
+  height: 16%;
+}
+
+.device-screen {
+  position: relative;
+  container-type: size;
+  overflow: hidden;
+  background: var(--paper-2);
+  border: 2px solid var(--ink);
+}
+
+.device-phone .device-screen {
+  aspect-ratio: 9 / 19.5;
+  border-radius: 11cqi;
+}
+
+.device-tablet .device-screen {
+  aspect-ratio: 4 / 3;
+  border-radius: 2cqi;
+}
+
+.device-screen img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.device-island {
+  position: absolute;
+  top: 3cqmin;
+  left: 50%;
+  width: 30cqmin;
+  height: 8cqmin;
+  background: var(--ink);
+  border-radius: 999px;
+  transform: translateX(-50%);
+}
+
+.device-home {
+  position: absolute;
+  bottom: 2.5cqmin;
+  left: 50%;
+  width: 36cqmin;
+  height: max(3px, 1.6cqmin);
+  background: rgb(45 37 65 / 0.55);
+  border-radius: 999px;
+  transform: translateX(-50%);
+}
+
+.device-camera {
+  position: absolute;
+  top: calc(1.5cqi - 3px);
+  left: 50%;
+  width: max(5px, 1.2cqi);
+  aspect-ratio: 1;
+  background: var(--ink);
+  border-radius: 50%;
+  transform: translateX(-50%);
+}
+
+/* Launch screen, shown until real screenshots exist. */
+.device-splash {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4cqmin;
+  height: 100%;
+  padding: 0 6cqmin;
+  text-align: center;
+  line-height: 1.2;
+  color: var(--ink);
+}
+
+.device-app-icon {
+  display: grid;
+  place-items: center;
+  width: 34cqmin;
+  aspect-ratio: 1;
+  margin-bottom: 2cqmin;
+  font-size: 19cqmin;
+  line-height: 1;
+  background: var(--paper);
+  border: max(2px, 1.2cqmin) solid var(--ink);
+  border-radius: 24%;
+  box-shadow: max(2px, 1.2cqmin) max(2px, 1.2cqmin) 0 var(--ink);
+}
+
+.device-app-name {
+  font: 700 clamp(11px, 10cqmin, 28px) / 1.1 var(--font-display);
+  overflow-wrap: anywhere;
+}
+
+.device-app-caption {
+  font-size: clamp(9px, 6cqmin, 15px);
+  font-weight: 800;
+  color: var(--ink-soft);
+}
+
+.device-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 10px;
+  font-weight: 800;
+}
+
+.device-nav .icon-btn {
+  width: 36px;
+  height: 36px;
+  font-size: 22px;
+}

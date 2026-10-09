@@ -32,6 +32,8 @@ export interface StoreLink {
   app?: string
 }
 
+export type Platform = 'web' | 'ios' | 'android' | 'ipad'
+
 export interface Project {
   id: string
   title: string
@@ -42,6 +44,12 @@ export interface Project {
   tech: string[]
   /** Paths under /public, e.g. "/projects/my-app-1.webp". The first one is the cover. */
   images: string[]
+  /** Portrait phone screenshots (about 9:19.5) under /public. Shown inside a phone frame. */
+  phoneShots?: string[]
+  /** Landscape iPad screenshots (4:3) under /public. Shown inside a tablet frame. */
+  tabletShots?: string[]
+  /** Where it runs. The first entry is the main platform and decides which view a project opens in. */
+  platforms: Platform[]
   liveUrl?: string
   repoUrl?: string
   /** App Store and Google Play listings. */

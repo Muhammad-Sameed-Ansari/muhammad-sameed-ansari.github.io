@@ -88,6 +88,7 @@ export const portfolio: Portfolio = {
         'Playwright',
       ],
       images: ['/projects/b12give.webp'],
+      platforms: ['web', 'ios', 'android'],
       liveUrl: 'https://www.b12give.ca',
       stores: [
         {
@@ -136,6 +137,7 @@ export const portfolio: Portfolio = {
         'OpenStreetMap',
       ],
       images: ['/projects/tutorshub.webp'],
+      platforms: ['ios', 'android', 'web'],
       liveUrl: 'https://tutorshub.ca',
       stores: [
         { store: 'app-store', url: 'https://apps.apple.com/ca/app/tutorhub/id6782578875' },
@@ -167,6 +169,7 @@ export const portfolio: Portfolio = {
         'Flutter Web',
       ],
       images: ['/projects/sport12.webp'],
+      platforms: ['ios', 'android', 'web'],
       liveUrl: 'https://sport-12.com',
       stores: [
         {
@@ -197,6 +200,7 @@ export const portfolio: Portfolio = {
         'Mixpanel',
       ],
       images: ['/projects/steamatic.webp'],
+      platforms: ['ipad'],
       year: '2025 – now',
       icon: '🗓️',
       color: '#ffd6a5',
@@ -221,6 +225,7 @@ export const portfolio: Portfolio = {
         'Sign in with Apple',
       ],
       images: ['/projects/smileapp.webp'],
+      platforms: ['ios', 'android'],
       year: '2025',
       icon: '😊',
       color: '#ffe08a',
@@ -243,6 +248,7 @@ export const portfolio: Portfolio = {
         'Play Billing',
       ],
       images: ['/projects/petomie.webp'],
+      platforms: ['ios', 'android', 'web'],
       year: '2025',
       icon: '🐴',
       color: '#bfe3ff',
@@ -265,6 +271,7 @@ export const portfolio: Portfolio = {
         'Groq API',
       ],
       images: ['/projects/writeai.webp'],
+      platforms: ['ios'],
       year: '2026',
       icon: '✨',
       color: '#e3d6ff',

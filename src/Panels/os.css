@@ -1,5 +1,8 @@
 .os {
   width: min(1100px, 100%);
+  /* Without this the backdrop's grid track grows to the icons' one-row width and pushes the
+     laptop past the screen edge. */
+  min-width: 0;
   height: min(720px, calc(100dvh - 32px));
   outline: none;
 }
@@ -58,6 +61,51 @@
   background: #ff9f8f;
 }
 
+/* One-of-several toggle, used for the desktop filter and the window's view switch. */
+.os-segmented {
+  display: inline-flex;
+  flex-shrink: 0;
+  background: var(--paper);
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  box-shadow: var(--shadow-sm);
+}
+
+.os-segmented button {
+  min-height: 28px;
+  padding: 2px 12px;
+  font: 600 14px/1 var(--font-display);
+  white-space: nowrap;
+  background: none;
+  border: 0;
+  border-radius: 0;
+  cursor: pointer;
+}
+
+.os-segmented button + button {
+  border-left: 2px solid var(--ink);
+}
+
+.os-segmented button:first-child {
+  border-radius: 999px 0 0 999px;
+}
+
+.os-segmented button:last-child {
+  border-radius: 0 999px 999px 0;
+}
+
+.os-segmented button:hover {
+  background: rgb(255 209 102 / 0.4);
+}
+
+.os-segmented button[aria-pressed='true'] {
+  background: var(--butter);
+}
+
+.os-filter {
+  margin-left: 6px;
+}
+
 .os-desktop {
   position: relative;
   flex: 1;
@@ -95,6 +143,7 @@
 }
 
 .os-icon-tile {
+  position: relative;
   display: grid;
   place-items: center;
   width: 68px;
@@ -109,6 +158,21 @@
 .os-icon:hover .os-icon-tile,
 .os-icon:focus-visible .os-icon-tile {
   transform: translateY(-4px) rotate(-4deg);
+}
+
+/* Platform hint in the tile's corner: 🌐 web, 📱 mobile, or both. */
+.os-icon-badge {
+  position: absolute;
+  top: -10px;
+  right: -12px;
+  padding: 2px 4px;
+  font-size: 14px;
+  line-height: 1;
+  white-space: nowrap;
+  background: var(--paper);
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  box-shadow: 1px 1px 0 var(--ink);
 }
 
 .os-icon-file {
@@ -201,6 +265,50 @@
   max-width: 62ch;
 }
 
+.os-platform-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px 14px;
+  margin-bottom: 14px;
+}
+
+.os-platforms {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 8px;
+}
+
+.os-platforms-label {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--ink-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* Dark pills so platforms don't read as the pastel tech chips. */
+.os-platforms ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.os-platforms li {
+  padding: 2px 10px;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--paper);
+  background: var(--ink);
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+}
+
 .os-gallery {
   margin-bottom: 14px;
 }
@@ -229,6 +337,46 @@
   width: 36px;
   height: 36px;
   font-size: 22px;
+}
+
+/* Device view: phone or tablet on the left, text on the right. */
+.os-device-view {
+  container-type: inline-size;
+}
+
+.os-device-layout {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  align-items: start;
+  gap: 22px;
+}
+
+.os-device-layout.os-device-tablet {
+  grid-template-columns: 300px minmax(0, 1fr);
+}
+
+.os-device {
+  position: sticky;
+  top: 0;
+  padding: 0 6px 6px 0;
+}
+
+/* A dragged window can be squeezed narrow on small desktops, so stack there too. */
+@container (max-width: 520px) {
+  .os-device-layout,
+  .os-device-layout.os-device-tablet {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .os-device {
+    position: static;
+    justify-self: center;
+    width: min(180px, 60%);
+  }
+
+  .os-device-tablet .os-device {
+    width: min(320px, 100%);
+  }
 }
 
 .os-tagline {
@@ -298,6 +446,49 @@
     border: 0;
     border-radius: 0;
     padding-top: env(safe-area-inset-top);
+  }
+
+  /* Filter and Stand up share a second row so the menubar fits a phone. */
+  .os-menubar {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 6px 12px;
+  }
+
+  .os-brand,
+  .os-clock {
+    grid-row: 1;
+  }
+
+  .os-filter {
+    grid-row: 2;
+    justify-self: start;
+    margin-left: 0;
+  }
+
+  .os-standup {
+    grid-row: 2;
+    grid-column: 2;
+  }
+
+  .os-clock {
+    grid-column: 2;
+    justify-self: end;
+  }
+
+  .os-device-layout,
+  .os-device-layout.os-device-tablet {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .os-device {
+    position: static;
+    justify-self: center;
+    width: min(170px, 60%);
+  }
+
+  .os-device-tablet .os-device {
+    width: min(320px, 100%);
   }
 
   .os-icons {

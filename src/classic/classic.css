@@ -113,13 +113,28 @@ html.is-classic body {
   border-radius: 18px;
 }
 
-.c-project img {
+.c-project > img {
   width: 100%;
   height: auto;
   aspect-ratio: 16 / 10;
   object-fit: cover;
   border: 2px solid var(--ink);
   border-radius: 10px;
+}
+
+/* Mobile-first projects show a small phone or tablet instead of the wide cover. */
+.c-project-device {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.c-project-device .device-phone {
+  width: 112px;
+}
+
+.c-project-device .device-tablet {
+  width: min(232px, 100%);
 }
 
 .c-project p {
@@ -129,6 +144,45 @@ html.is-classic body {
 .c-year {
   font: 700 14px var(--font-body);
   color: var(--ink-soft);
+}
+
+.c-platforms {
+  font-size: 14.5px;
+  font-weight: 800;
+}
+
+.c-filter {
+  display: inline-flex;
+  margin-bottom: 16px;
+  background: #fff;
+  border: 3px solid var(--ink);
+  border-radius: 999px;
+  box-shadow: var(--shadow-sm);
+}
+
+.c-filter button {
+  min-height: 40px;
+  padding: 4px 18px;
+  font: 600 16px/1 var(--font-display);
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.c-filter button + button {
+  border-left: 3px solid var(--ink);
+}
+
+.c-filter button:first-child {
+  border-radius: 999px 0 0 999px;
+}
+
+.c-filter button:last-child {
+  border-radius: 0 999px 999px 0;
+}
+
+.c-filter button[aria-pressed='true'] {
+  background: var(--butter);
 }
 
 .c-tagline {

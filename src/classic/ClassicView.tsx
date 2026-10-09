@@ -1,10 +1,22 @@
-import { useEffect } from 'react'
-import { dateRange, LEVELS, storeLabel } from '../content/format'
+import { useEffect, useState } from 'react'
+import {
+  dateRange,
+  filterSummary,
+  LEVELS,
+  matchesFilter,
+  mobilePlatformsLine,
+  platformLabel,
+  primaryView,
+  PROJECT_FILTERS,
+  storeLabel,
+  type ProjectFilter,
+} from '../content/format'
 import { portfolio } from '../content/portfolio'
 import { asset } from '../lib/asset'
 import type { TimelineEntry } from '../content/types'
 import { hasWebGL } from '../lib/media'
 import { AvatarPortrait } from '../Panels/AvatarPortrait'
+import { DeviceFrame } from '../Panels/DeviceFrame'
 import { SocialIcon } from '../Panels/SocialIcon'
 import { useStore } from '../store/useStore'
 import './classic.css'
@@ -38,6 +50,8 @@ export default function ClassicView() {
   const setMode = useStore((s) => s.setMode)
   const p = portfolio
   const webgl = hasWebGL()
+  const [filter, setFilter] = useState<ProjectFilter>('all')
+  const projects = p.projects.filter((proj) => matchesFilter(proj, filter))
 
   useEffect(() => {
     document.documentElement.classList.add('is-classic')
@@ -92,45 +106,87 @@ export default function ClassicView() {
 
         <section id="projects" aria-labelledby="projects-h">
           <h2 id="projects-h">Projects</h2>
-          <ul className="c-projects">
-            {p.projects.map((proj) => (
-              <li key={proj.id} className="c-project">
-                {proj.images[0] && (
-                  <img src={asset(proj.images[0])} alt="" loading="lazy" width={640} height={400} />
-                )}
-                <div className="c-project-body">
-                  <h3>
-                    <span aria-hidden="true">{proj.icon}</span> {proj.title}{' '}
-                    <span className="c-year">{proj.year}</span>
-                  </h3>
-                  <p className="c-tagline">{proj.tagline}</p>
-                  {proj.role && <p className="c-role">{proj.role}</p>}
-                  <p>{proj.description}</p>
-                  <p className="c-tech">
-                    <span className="visually-hidden">Built with: </span>
-                    {proj.tech.join(', ')}
-                  </p>
-                  <p className="c-links">
-                    {proj.liveUrl && (
-                      <a href={proj.liveUrl} target="_blank" rel="noreferrer">
-                        Live site<span className="visually-hidden"> of {proj.title}</span>
-                      </a>
-                    )}
-                    {proj.repoUrl && (
-                      <a href={proj.repoUrl} target="_blank" rel="noreferrer">
-                        Source code<span className="visually-hidden"> of {proj.title}</span>
-                      </a>
-                    )}
-                    {proj.stores?.map((s) => (
-                      <a key={s.url} href={s.url} target="_blank" rel="noreferrer">
-                        {storeLabel(s)}
-                        <span className="visually-hidden"> ({proj.title})</span>
-                      </a>
-                    ))}
-                  </p>
-                </div>
-              </li>
+          <div className="c-filter" role="group" aria-label="Show projects">
+            {PROJECT_FILTERS.map((f) => (
+              <button
+                key={f.id}
+                type="button"
+                aria-pressed={f.id === filter}
+                onClick={() => setFilter(f.id)}
+              >
+                {f.label}
+              </button>
             ))}
+          </div>
+          <p className="visually-hidden" aria-live="polite">
+            {filterSummary(filter, projects.length)}
+          </p>
+          <ul className="c-projects">
+            {projects.map((proj) => {
+              const view = primaryView(proj)
+              const shots = view === 'tablet' ? proj.tabletShots : proj.phoneShots
+              return (
+                <li key={proj.id} className="c-project">
+                  {view === 'web' ? (
+                    proj.images[0] && (
+                      <img
+                        src={asset(proj.images[0])}
+                        alt=""
+                        loading="lazy"
+                        width={640}
+                        height={400}
+                      />
+                    )
+                  ) : (
+                    <div className="c-project-device">
+                      <DeviceFrame
+                        variant={view}
+                        shots={shots?.slice(0, 1)}
+                        title={proj.title}
+                        icon={proj.icon}
+                        color={proj.color}
+                        caption={mobilePlatformsLine(proj)}
+                        decorative
+                      />
+                    </div>
+                  )}
+                  <div className="c-project-body">
+                    <h3>
+                      <span aria-hidden="true">{proj.icon}</span> {proj.title}{' '}
+                      <span className="c-year">{proj.year}</span>
+                    </h3>
+                    <p className="c-platforms">
+                      Runs on: {proj.platforms.map(platformLabel).join(' · ')}
+                    </p>
+                    <p className="c-tagline">{proj.tagline}</p>
+                    {proj.role && <p className="c-role">{proj.role}</p>}
+                    <p>{proj.description}</p>
+                    <p className="c-tech">
+                      <span className="visually-hidden">Built with: </span>
+                      {proj.tech.join(', ')}
+                    </p>
+                    <p className="c-links">
+                      {proj.liveUrl && (
+                        <a href={proj.liveUrl} target="_blank" rel="noreferrer">
+                          Live site<span className="visually-hidden"> of {proj.title}</span>
+                        </a>
+                      )}
+                      {proj.repoUrl && (
+                        <a href={proj.repoUrl} target="_blank" rel="noreferrer">
+                          Source code<span className="visually-hidden"> of {proj.title}</span>
+                        </a>
+                      )}
+                      {proj.stores?.map((s) => (
+                        <a key={s.url} href={s.url} target="_blank" rel="noreferrer">
+                          {storeLabel(s)}
+                          <span className="visually-hidden"> ({proj.title})</span>
+                        </a>
+                      ))}
+                    </p>
+                  </div>
+                </li>
+              )
+            })}
           </ul>
         </section>
 
