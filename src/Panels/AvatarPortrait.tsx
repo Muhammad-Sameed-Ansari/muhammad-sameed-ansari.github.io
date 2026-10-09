@@ -133,8 +133,6 @@ export function AvatarPortrait({
           )}
         </g>
       )}
-      <ellipse cx="62" cy="120" rx="9" ry="5" fill="#ff9fa8" />
-      <ellipse cx="138" cy="120" rx="9" ry="5" fill="#ff9fa8" />
       {config.facialHair === 'mustache' && (
         <path
           d="M84 122 Q100 112 116 122 Q100 120 84 122 Z"

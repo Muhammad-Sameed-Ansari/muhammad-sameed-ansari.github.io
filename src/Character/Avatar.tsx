@@ -288,17 +288,6 @@ export function Avatar({ config, rig }: { config: AvatarConfig; rig: RefObject<A
               </group>
             ))}
           </group>
-          {[0.2, -0.2].map((x) => (
-            <Ball
-              key={x}
-              r={0.05}
-              color="#ff9fa8"
-              outline={false}
-              position={[x, HEAD_Y - 0.1, 0.262]}
-              scale={[1.2, 0.7, 0.4]}
-              segments={10}
-            />
-          ))}
           <mesh position={[0, HEAD_Y - 0.11, 0.312]} rotation={[0, 0, Math.PI]}>
             <torusGeometry args={[0.042, 0.011, 6, 14, Math.PI]} />
             <meshBasicMaterial color={INK} />
