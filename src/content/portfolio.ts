@@ -88,6 +88,28 @@ export const portfolio: Portfolio = {
       ],
       images: ['/projects/b12give.webp'],
       liveUrl: 'https://www.b12give.ca',
+      stores: [
+        {
+          app: 'Partners',
+          store: 'app-store',
+          url: 'https://apps.apple.com/ca/app/partners/id6723881772',
+        },
+        {
+          app: 'Partners',
+          store: 'google-play',
+          url: 'https://play.google.com/store/apps/details?id=com.b12give.partners',
+        },
+        {
+          app: 'Driver',
+          store: 'app-store',
+          url: 'https://apps.apple.com/ca/app/drivers/id1545707201',
+        },
+        {
+          app: 'Driver',
+          store: 'google-play',
+          url: 'https://play.google.com/store/apps/details?id=com.b12give.driver_partner',
+        },
+      ],
       year: '2024 – now',
       icon: '🥕',
       color: '#b8f2d4',
@@ -114,6 +136,13 @@ export const portfolio: Portfolio = {
       ],
       images: ['/projects/tutorshub.webp'],
       liveUrl: 'https://tutorshub.ca',
+      stores: [
+        { store: 'app-store', url: 'https://apps.apple.com/ca/app/tutorhub/id6782578875' },
+        {
+          store: 'google-play',
+          url: 'https://play.google.com/store/apps/details?id=ca.tutorshub.android',
+        },
+      ],
       year: '2026',
       icon: '🎓',
       color: '#d9c8ff',
@@ -138,6 +167,13 @@ export const portfolio: Portfolio = {
       ],
       images: ['/projects/sport12.webp'],
       liveUrl: 'https://sport-12.com',
+      stores: [
+        {
+          store: 'app-store',
+          url: 'https://apps.apple.com/mx/app/sport12-pickup-soccer/id1441021234',
+        },
+        { store: 'google-play', url: 'https://play.google.com/store/apps/details?id=com.sport12' },
+      ],
       year: '2026',
       icon: '⚽',
       color: '#a8d8ff',

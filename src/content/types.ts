@@ -24,6 +24,13 @@ export interface Social {
   icon: 'github' | 'linkedin' | 'email' | 'x' | 'globe' | 'dribbble' | 'youtube'
 }
 
+export interface StoreLink {
+  store: 'app-store' | 'google-play'
+  url: string
+  /** Which app, when a project ships more than one, e.g. "Driver". */
+  app?: string
+}
+
 export interface Project {
   id: string
   title: string
@@ -36,6 +43,8 @@ export interface Project {
   images: string[]
   liveUrl?: string
   repoUrl?: string
+  /** App Store and Google Play listings. */
+  stores?: StoreLink[]
   year: string
   /** Emoji used as the app icon on the laptop desktop. */
   icon: string

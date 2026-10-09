@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { dateRange, LEVELS } from '../content/format'
+import { dateRange, LEVELS, storeLabel } from '../content/format'
 import { portfolio } from '../content/portfolio'
 import { asset } from '../lib/asset'
 import type { TimelineEntry } from '../content/types'
@@ -121,6 +121,12 @@ export default function ClassicView() {
                         Source code<span className="visually-hidden"> of {proj.title}</span>
                       </a>
                     )}
+                    {proj.stores?.map((s) => (
+                      <a key={s.url} href={s.url} target="_blank" rel="noreferrer">
+                        {storeLabel(s)}
+                        <span className="visually-hidden"> ({proj.title})</span>
+                      </a>
+                    ))}
                   </p>
                 </div>
               </li>

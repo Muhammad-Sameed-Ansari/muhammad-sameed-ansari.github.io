@@ -1,6 +1,7 @@
 import { AnimatePresence, motion, useDragControls } from 'motion/react'
 import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { closeSection } from '../Character/commands'
+import { storeLabel } from '../content/format'
 import { portfolio } from '../content/portfolio'
 import { asset } from '../lib/asset'
 import type { Project } from '../content/types'
@@ -80,6 +81,11 @@ function ProjectBody({ project }: { project: Project }) {
             View source code
           </a>
         )}
+        {project.stores?.map((s) => (
+          <a key={s.url} className="btn" href={s.url} target="_blank" rel="noreferrer">
+            {storeLabel(s)}
+          </a>
+        ))}
       </div>
     </>
   )

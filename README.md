@@ -47,7 +47,7 @@ Every placeholder is marked `TODO: replace`. Fill in:
 1. `name`, `shortName` (used in greetings), `title`, `location`
 2. `bio` (one string per paragraph) and `funFacts`
 3. `email` and `socials` (GitHub, LinkedIn, email; `icon` can also be `x`, `globe`, `dribbble`, `youtube`)
-4. `projects`: title, tagline, description, an optional `role` (what you did on it), tech list, `liveUrl`/`repoUrl`, `year`, an emoji `icon` and a tile `color`.
+4. `projects`: title, tagline, description, an optional `role` (what you did on it), tech list, `liveUrl`/`repoUrl`, optional `stores` (App Store / Google Play links), `year`, an emoji `icon` and a tile `color`.
    3 to 6 projects fit the laptop desktop best.
 5. `skills`: categories become shelves (the first four are shown on the 3D bookshelf); `level` is 1–5
 6. `experience` and `education`, newest first
