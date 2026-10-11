@@ -114,7 +114,8 @@ export const portfolio: Portfolio = {
       ],
       year: '2024 – now',
       icon: '🥕',
-      color: '#b8f2d4',
+      logo: '/projects/b12give-logo.png',
+      color: '#ffffff',
     },
     {
       id: 'tutorshub',
