@@ -59,8 +59,17 @@ html.is-classic body {
   grid-column: 1 / -1;
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: 4px 18px;
   margin-top: 10px;
+}
+
+.c-nav .c-hire {
+  min-height: 38px;
+  margin-left: auto;
+  padding: 6px 14px;
+  font-size: 15px;
+  text-decoration: none;
 }
 
 .c-nav a,

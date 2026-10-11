@@ -1,4 +1,4 @@
-import { openSection } from '../Character/commands'
+import { openHire, openSection } from '../Character/commands'
 import { portfolio } from '../content/portfolio'
 import { asset } from '../lib/asset'
 import { AvatarPortrait } from './AvatarPortrait'
@@ -26,6 +26,9 @@ export default function AboutPanel() {
             <a className="btn btn-primary" href={asset(portfolio.resumeUrl)} download>
               Download résumé (PDF)
             </a>
+            <button className="btn" onClick={openHire}>
+              Hire me
+            </button>
             <button className="btn" onClick={() => openSection('contact')}>
               Say hi
             </button>

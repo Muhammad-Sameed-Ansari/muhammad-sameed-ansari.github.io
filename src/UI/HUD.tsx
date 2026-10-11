@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from 'motion/react'
-import { navigateTo } from '../Character/commands'
+import { navigateTo, openHire } from '../Character/commands'
 import { portfolio } from '../content/portfolio'
 import { useCoarsePointer } from '../lib/media'
 import { sfx } from '../lib/sound'
@@ -103,6 +103,9 @@ export function HUD() {
             onClick={() => st().setHelpOpen(!helpOpen)}
           >
             ?
+          </button>
+          <button className="btn btn-primary hud-hire" onClick={openHire}>
+            <span aria-hidden="true">💼</span> Hire me
           </button>
           <button className="btn hud-classic" onClick={() => st().setMode('classic')}>
             Classic view

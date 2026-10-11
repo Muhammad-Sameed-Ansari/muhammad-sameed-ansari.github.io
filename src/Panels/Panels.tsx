@@ -1,16 +1,17 @@
 import { AnimatePresence } from 'motion/react'
 import { Suspense, lazy } from 'react'
 import { useStore } from '../store/useStore'
-import type { Section } from '../scene/objects'
+import type { PanelId } from '../store/useStore'
 import './panels.css'
 
 // Each panel is its own chunk, fetched the first time it is opened.
-const PANELS: Record<Section, ReturnType<typeof lazy>> = {
+const PANELS: Record<PanelId, ReturnType<typeof lazy>> = {
   projects: lazy(() => import('./ProjectsOS')),
   skills: lazy(() => import('./SkillsPanel')),
   experience: lazy(() => import('./ExperiencePanel')),
   about: lazy(() => import('./AboutPanel')),
   contact: lazy(() => import('./ContactPanel')),
+  hire: lazy(() => import('./HirePanel')),
 }
 
 export function Panels() {

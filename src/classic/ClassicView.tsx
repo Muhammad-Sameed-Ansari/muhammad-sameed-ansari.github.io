@@ -17,6 +17,7 @@ import type { TimelineEntry } from '../content/types'
 import { hasWebGL } from '../lib/media'
 import { AvatarPortrait } from '../Panels/AvatarPortrait'
 import { DeviceFrame } from '../Panels/DeviceFrame'
+import { Plans } from '../Panels/Plans'
 import { ProjectIcon } from '../Panels/ProjectIcon'
 import { SocialIcon } from '../Panels/SocialIcon'
 import { useStore } from '../store/useStore'
@@ -74,9 +75,13 @@ export default function ClassicView() {
         </div>
         <nav aria-label="Sections" className="c-nav">
           <a href="#projects">Projects</a>
+          <a href="#plans">Plans</a>
           <a href="#skills">Skills</a>
           <a href="#experience">Experience</a>
           <a href="#contact">Contact</a>
+          <a className="btn btn-primary c-hire" href="#plans">
+            <span aria-hidden="true">💼</span> Hire me
+          </a>
         </nav>
       </header>
 
@@ -91,7 +96,10 @@ export default function ClassicView() {
             </p>
           ))}
           <div className="c-actions">
-            <a className="btn btn-primary" href={asset(p.resumeUrl)} download>
+            <a className="btn btn-primary" href="#plans">
+              See monthly plans
+            </a>
+            <a className="btn" href={asset(p.resumeUrl)} download>
               Download résumé (PDF)
             </a>
             <a className="btn" href={`mailto:${p.email}`}>
@@ -192,6 +200,11 @@ export default function ClassicView() {
               )
             })}
           </ul>
+        </section>
+
+        <section id="plans" aria-labelledby="plans-h">
+          <h2 id="plans-h">{p.hire.headline}</h2>
+          <Plans />
         </section>
 
         <section id="skills" aria-labelledby="skills-h">

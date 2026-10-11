@@ -64,9 +64,14 @@
   gap: 8px;
 }
 
-.hud-classic {
+.hud-classic,
+.hud-hire {
   min-height: 44px;
   font-size: 15px;
+}
+
+.hud-hire {
+  box-shadow: var(--shadow);
 }
 
 .hud-hint {
@@ -224,6 +229,12 @@
 /* ---------- Small screens ---------- */
 
 @media (max-width: 640px) {
+  /* The name keeps the first row; the buttons drop to a second row, right-aligned. */
+  .hud-top {
+    flex-wrap: wrap;
+    row-gap: 8px;
+  }
+
   .hud-badge {
     min-width: 0;
     padding-right: 12px;
@@ -243,6 +254,11 @@
   .hud-tools {
     flex-wrap: nowrap;
     gap: 6px;
+    margin-left: auto;
+  }
+
+  .help-card {
+    top: 124px;
   }
 
   .hud-avatar {
@@ -266,6 +282,14 @@
 
   .hud-classic {
     display: none;
+  }
+
+  .hud-hire {
+    flex: none;
+    min-height: 38px;
+    padding: 6px 12px;
+    font-size: 14px;
+    box-shadow: var(--shadow-sm);
   }
 
   .hud-dock {

@@ -61,6 +61,12 @@
   font-weight: 600;
 }
 
+/* ---------- Hire me ---------- */
+
+.panel-hire {
+  width: min(880px, 100%);
+}
+
 /* ---------- Skills: the bookshelf ---------- */
 
 .panel-skills {

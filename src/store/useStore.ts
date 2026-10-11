@@ -9,6 +9,9 @@ interface Speech {
 
 export type ViewMode = 'room' | 'classic'
 
+/** A room section, or the "Hire me" plans panel, which has no object in the room. */
+export type PanelId = Section | 'hire'
+
 interface State {
   /** 'classic' is the plain, fast, accessible single-page version. */
   mode: ViewMode
@@ -16,7 +19,7 @@ interface State {
   progress: number
   /** The visitor pressed "Enter my room". */
   entered: boolean
-  panel: Section | null
+  panel: PanelId | null
   /** What the camera is framing. 'projects' means the laptop close-up. */
   focus: ObjectId | null
   /** Interactive object the character is standing next to. */
@@ -36,7 +39,7 @@ interface State {
   setMode: (mode: ViewMode) => void
   setProgress: (p: number) => void
   enter: () => void
-  openPanel: (s: Section) => void
+  openPanel: (s: PanelId) => void
   closePanel: () => void
   setFocus: (f: ObjectId | null) => void
   setNear: (id: ObjectId | null) => void

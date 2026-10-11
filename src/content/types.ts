@@ -76,6 +76,38 @@ export interface SkillCategory {
   skills: Skill[]
 }
 
+/** A monthly plan on the "Hire me" panel and the classic view's Plans section. */
+export interface Plan {
+  name: string
+  /** Shown large, e.g. "$400". */
+  price: string
+  /** Shown after the price, e.g. "/month". */
+  cadence: string
+  /** One line on who it's for. */
+  forWho: string
+  includes: string[]
+  /** Highlighted as the recommended plan. Use on one plan at most. */
+  featured?: boolean
+}
+
+export interface Hire {
+  headline: string
+  intro: string
+  plans: Plan[]
+  /** Short reassurances under the plans: trial, pausing, new builds. */
+  notes: string[]
+  /**
+   * Booking page for "Book a free 15-min call". A cal.com link opens as a popup on the site;
+   * any other link (e.g. Calendly) opens in a new tab. Without it, the button opens the form.
+   */
+  bookingUrl?: string
+  /**
+   * Where the enquiry form sends, via formsubmit.co. Defaults to `email`. After you activate
+   * the form, FormSubmit emails you a random ID: put it here to keep your address out of the code.
+   */
+  formSubmitId?: string
+}
+
 export interface TimelineEntry {
   title: string
   org: string
@@ -101,6 +133,8 @@ export interface Portfolio {
   avatar: AvatarConfig
   socials: Social[]
   projects: Project[]
+  /** The "Hire me" offer: monthly plans for clients. */
+  hire: Hire
   skills: SkillCategory[]
   experience: TimelineEntry[]
   education: TimelineEntry[]

@@ -91,6 +91,12 @@ export function openSection(section: Section) {
   sfx.open()
 }
 
+/** Opens the plans panel right where the visitor is: no walking, no camera move. */
+export function openHire() {
+  store().openPanel('hire')
+  sfx.open()
+}
+
 export function closeSection() {
   if (!store().panel && !store().focus) return
   store().closePanel()
