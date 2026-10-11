@@ -2,7 +2,7 @@ import { useStore } from '../store/useStore'
 
 /**
  * Every sound effect is synthesized with the Web Audio API, so there are no audio files
- * to download or license. Sounds only play when the visitor has turned sound on.
+ * to download or license. Sound is on by default; the HUD speaker button mutes it.
  */
 
 let ctx: AudioContext | null = null

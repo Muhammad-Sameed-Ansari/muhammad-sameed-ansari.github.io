@@ -71,7 +71,7 @@ export const useStore = create<State>()((set, get) => ({
   hoverId: null,
   night: false,
   lampOn: false,
-  sound: false,
+  sound: true,
   joystick: false,
   helpOpen: false,
   hasMoved: false,
