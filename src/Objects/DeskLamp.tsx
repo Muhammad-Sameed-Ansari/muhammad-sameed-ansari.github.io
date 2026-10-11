@@ -40,7 +40,8 @@ export function DeskLamp(props: Omit<ThreeElements['group'], 'ref'>) {
           <sphereGeometry args={[0.055, 14, 10]} />
           <meshBasicMaterial ref={bulb} toneMapped={false} />
         </mesh>
-        <mesh position={[0, -0.42, 0]}>
+        {/* Light beam: ignores the pointer, or this wide cone steals clicks from the laptop. */}
+        <mesh position={[0, -0.42, 0]} raycast={() => null}>
           <coneGeometry args={[0.45, 0.7, 24, 1, true]} />
           <meshBasicMaterial
             ref={cone}
