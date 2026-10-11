@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, type ReactNode } from 'react'
 import { asset } from '../lib/asset'
 import './DeviceFrame.css'
 
@@ -7,8 +7,8 @@ interface DeviceFrameProps {
   /** Paths under /public. With none, the screen shows the app's launch screen instead. */
   shots?: string[]
   title: string
-  /** Emoji shown in the launch screen's app-icon tile. */
-  icon: string
+  /** Emoji or logo shown in the launch screen's app-icon tile. */
+  icon: ReactNode
   /** Launch screen background. */
   color: string
   /** Small line under the title on the launch screen, e.g. "iOS · Android". */

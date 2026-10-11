@@ -17,6 +17,7 @@ import type { TimelineEntry } from '../content/types'
 import { hasWebGL } from '../lib/media'
 import { AvatarPortrait } from '../Panels/AvatarPortrait'
 import { DeviceFrame } from '../Panels/DeviceFrame'
+import { ProjectIcon } from '../Panels/ProjectIcon'
 import { SocialIcon } from '../Panels/SocialIcon'
 import { useStore } from '../store/useStore'
 import './classic.css'
@@ -143,7 +144,7 @@ export default function ClassicView() {
                         variant={view}
                         shots={shots?.slice(0, 1)}
                         title={proj.title}
-                        icon={proj.icon}
+                        icon={<ProjectIcon project={proj} />}
                         color={proj.color}
                         caption={mobilePlatformsLine(proj)}
                         decorative
@@ -152,7 +153,10 @@ export default function ClassicView() {
                   )}
                   <div className="c-project-body">
                     <h3>
-                      <span aria-hidden="true">{proj.icon}</span> {proj.title}{' '}
+                      <span className="c-project-icon" aria-hidden="true">
+                        <ProjectIcon project={proj} />
+                      </span>{' '}
+                      {proj.title}{' '}
                       <span className="c-year">{proj.year}</span>
                     </h3>
                     <p className="c-platforms">

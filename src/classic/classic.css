@@ -306,3 +306,11 @@ html.is-classic body {
     height: 72px;
   }
 }
+
+/* A logo next to a project title sits at text height, where an emoji would be. */
+.c-project-icon .project-logo {
+  display: inline-block;
+  width: auto;
+  height: 1.15em;
+  vertical-align: -0.25em;
+}

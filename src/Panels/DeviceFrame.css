@@ -132,6 +132,13 @@
   box-shadow: max(2px, 1.2cqmin) max(2px, 1.2cqmin) 0 var(--ink);
 }
 
+/* Undo the screenshot sizing above for a logo inside the app-icon tile. */
+.device-app-icon .project-logo {
+  width: 84%;
+  height: auto;
+  object-fit: contain;
+}
+
 .device-app-name {
   font: 700 clamp(11px, 10cqmin, 28px) / 1.1 var(--font-display);
   overflow-wrap: anywhere;

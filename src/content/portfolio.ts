@@ -185,10 +185,10 @@ export const portfolio: Portfolio = {
     {
       id: 'steamatic',
       title: 'Steamatic',
-      tagline: 'iPad app that runs a field-service business',
+      tagline: 'iPad app that runs Steamatic Australia’s property-restoration crews',
       role: 'Team project: built the Schedule module and much of offline mode',
       description:
-        'An internal, ERP-style iPad app for dispatch, jobs, work orders, finance and warehouse inventory. I built the Schedule module from scratch: a custom UICollectionView layout with crews as columns and time as rows, drag-and-drop rescheduling across runs, dragging jobs from the sidebar onto the board, sticky headers, overlap resolution and map route overlays, all synced live with the REST API. Since then I have built much of the offline mode, which downloads jobs, lets crews work without signal and syncs everything back.',
+        'Steamatic is Australia’s most extensive regional restoration network, cleaning up water, fire, flood and mould damage on more than 30,000 insurance claims a year. Its crews and office staff run the business from an internal, ERP-style iPad app for dispatch, jobs, work orders, finance and warehouse inventory. I built the Schedule module from scratch: a custom UICollectionView layout with crews as columns and time as rows, drag-and-drop rescheduling across runs, dragging jobs from the sidebar onto the board, sticky headers, overlap resolution and map route overlays, all synced live with the REST API. Since then I have built much of the offline mode, which downloads jobs, lets crews work without signal and syncs everything back.',
       tech: [
         'Swift',
         'UIKit',
@@ -201,9 +201,11 @@ export const portfolio: Portfolio = {
       ],
       images: ['/projects/steamatic.webp'],
       platforms: ['ipad'],
+      liveUrl: 'https://www.steamatic.com.au',
       year: '2025 – now',
-      icon: '🗓️',
-      color: '#ffd6a5',
+      icon: '💧',
+      logo: '/projects/steamatic-logo.svg',
+      color: '#ffffff',
     },
     {
       id: 'smileapp',
@@ -359,7 +361,7 @@ export const portfolio: Portfolio = {
       highlights: [
         'Own client products end to end across iOS, Android, Flutter, web dashboards and Node.js / Firebase backends',
         'Built TutorsHub solo and rebuilt the B12Give admin dashboard; now the sole developer across B12Give',
-        'Built the drag-and-drop scheduling board and offline sync for Steamatic’s iPad field-service app',
+        'Built the drag-and-drop scheduling board and offline sync for Steamatic Australia’s iPad field-service app',
         'Work on Sport12’s payments and wallet, and now building its admin dashboard',
         'Earlier: Best In Town (loyalty) and Premier UK Business (document uploads) iOS apps',
         'Review code and mentor junior developers on API integration and app architecture',

@@ -57,6 +57,8 @@ export interface Project {
   year: string
   /** Emoji used as the app icon on the laptop desktop. */
   icon: string
+  /** Optional real logo under /public (SVG or PNG). Shown instead of the emoji wherever it fits. */
+  logo?: string
   /** Icon tile background color. */
   color: string
 }

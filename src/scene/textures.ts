@@ -1,5 +1,6 @@
 import { CanvasTexture, RepeatWrapping, SRGBColorSpace } from 'three'
 import { portfolio } from '../content/portfolio'
+import { asset } from '../lib/asset'
 
 /** Small canvas-drawn textures, generated at runtime so there is nothing to download. */
 
@@ -153,7 +154,19 @@ export function laptopTexture() {
       ctx.strokeStyle = '#2d2541'
       ctx.stroke()
       ctx.fillStyle = '#2d2541'
-      ctx.fillText(p.icon, x, y + 2)
+      if (!p.logo) {
+        ctx.fillText(p.icon, x, y + 2)
+        return
+      }
+      // Logos load after the first draw, so paint them in and refresh the texture.
+      const img = new Image()
+      img.onload = () => {
+        const w = 60
+        const h = Math.min(60, (w * img.naturalHeight) / img.naturalWidth)
+        ctx.drawImage(img, x - w / 2, y - h / 2, w, h)
+        if (laptopTex) laptopTex.needsUpdate = true
+      }
+      img.src = asset(p.logo)
     })
   })
   return laptopTex

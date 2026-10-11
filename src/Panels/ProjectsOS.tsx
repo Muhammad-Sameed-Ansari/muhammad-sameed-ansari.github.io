@@ -20,6 +20,7 @@ import { asset } from '../lib/asset'
 import type { Project } from '../content/types'
 import { sfx } from '../lib/sound'
 import { DeviceFrame } from './DeviceFrame'
+import { ProjectIcon } from './ProjectIcon'
 import { Dialog } from './Dialog'
 import './os.css'
 
@@ -204,7 +205,7 @@ function ProjectBody({ project }: { project: Project }) {
                 variant={device}
                 shots={device === 'tablet' ? project.tabletShots : project.phoneShots}
                 title={project.title}
-                icon={project.icon}
+                icon={<ProjectIcon project={project} />}
                 color={project.color}
                 caption={mobilePlatformsLine(project)}
               />
@@ -335,7 +336,7 @@ export default function ProjectsOS() {
                         style={{ background: p.color }}
                         aria-hidden="true"
                       >
-                        {p.icon}
+                        <ProjectIcon project={p} />
                         <span className="os-icon-badge">{badge}</span>
                       </span>
                       <span className="os-icon-label">

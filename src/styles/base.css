@@ -54,6 +54,14 @@ textarea {
   outline-offset: 3px;
 }
 
+/* A project's real logo inside its icon tile (see Panels/ProjectIcon.tsx). */
+.project-logo {
+  display: block;
+  width: 84%;
+  height: auto;
+  pointer-events: none;
+}
+
 .visually-hidden {
   position: absolute !important;
   width: 1px;
