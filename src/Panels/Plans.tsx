@@ -1,12 +1,12 @@
 import { useState } from 'react'
-import { portfolio } from '../content/portfolio'
+import { hire } from '../content/hire'
 import { openBooking, preloadBooking } from '../lib/booking'
 import { CALL_TOPIC, EnquiryForm } from './EnquiryForm'
 import './plans.css'
 
 /** Plan cards, notes, "Book a call" and the enquiry form. Shared by the "Hire me" panel and the classic view. */
 export function Plans({ headingLevel = 3 }: { headingLevel?: 3 | 4 }) {
-  const { intro, plans, notes, bookingUrl } = portfolio.hire
+  const { intro, plans, notes, bookingUrl } = hire
   const Heading = `h${headingLevel}` as const
   const featured = plans.find((p) => p.featured) ?? plans[0]
   // focusKey changes on every button press, so pressing the same plan twice still jumps to the form.

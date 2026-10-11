@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from 'motion/react'
 import { navigateTo, openHire } from '../Character/commands'
 import { portfolio } from '../content/portfolio'
+import { forClients } from '../lib/audience'
 import { useCoarsePointer } from '../lib/media'
 import { sfx } from '../lib/sound'
 import { AvatarPortrait } from '../Panels/AvatarPortrait'
@@ -104,9 +105,11 @@ export function HUD() {
           >
             ?
           </button>
-          <button className="btn btn-primary hud-hire" onClick={openHire}>
-            <span aria-hidden="true">💼</span> Hire me
-          </button>
+          {forClients && (
+            <button className="btn btn-primary hud-hire" onClick={openHire}>
+              <span aria-hidden="true">💼</span> Hire me
+            </button>
+          )}
           <button className="btn hud-classic" onClick={() => st().setMode('classic')}>
             Classic view
           </button>

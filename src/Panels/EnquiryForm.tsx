@@ -1,4 +1,5 @@
 import { useEffect, useId, useRef, useState, type FormEvent } from 'react'
+import { hire } from '../content/hire'
 import { portfolio } from '../content/portfolio'
 
 /** "Which plan?" choices. The extra ones cover visitors who aren't ready to pick. */
@@ -12,7 +13,7 @@ type Status = 'idle' | 'sending' | 'sent' | 'error'
  * buttons preselect a plan and move focus here.
  */
 export function EnquiryForm({ topic, focusKey }: { topic: string; focusKey: number }) {
-  const { hire, email } = portfolio
+  const { email } = portfolio
   const id = useId()
   const nameRef = useRef<HTMLInputElement>(null)
   const [choice, setChoice] = useState(topic)

@@ -133,8 +133,6 @@ export interface Portfolio {
   avatar: AvatarConfig
   socials: Social[]
   projects: Project[]
-  /** The "Hire me" offer: monthly plans for clients. */
-  hire: Hire
   skills: SkillCategory[]
   experience: TimelineEntry[]
   education: TimelineEntry[]

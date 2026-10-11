@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { Suspense, lazy, useEffect, useState } from 'react'
 import {
   dateRange,
   filterSummary,
@@ -13,15 +13,18 @@ import {
 } from '../content/format'
 import { portfolio } from '../content/portfolio'
 import { asset } from '../lib/asset'
+import { forClients } from '../lib/audience'
 import type { TimelineEntry } from '../content/types'
 import { hasWebGL } from '../lib/media'
 import { AvatarPortrait } from '../Panels/AvatarPortrait'
 import { DeviceFrame } from '../Panels/DeviceFrame'
-import { Plans } from '../Panels/Plans'
 import { ProjectIcon } from '../Panels/ProjectIcon'
 import { SocialIcon } from '../Panels/SocialIcon'
 import { useStore } from '../store/useStore'
 import './classic.css'
+
+// Only fetched on ?for=clients links, so the prices never load for recruiters.
+const PlansSection = lazy(() => import('./PlansSection'))
 
 function Timeline({ items }: { items: TimelineEntry[] }) {
   return (
@@ -75,13 +78,15 @@ export default function ClassicView() {
         </div>
         <nav aria-label="Sections" className="c-nav">
           <a href="#projects">Projects</a>
-          <a href="#plans">Plans</a>
+          {forClients && <a href="#plans">Plans</a>}
           <a href="#skills">Skills</a>
           <a href="#experience">Experience</a>
           <a href="#contact">Contact</a>
-          <a className="btn btn-primary c-hire" href="#plans">
-            <span aria-hidden="true">💼</span> Hire me
-          </a>
+          {forClients && (
+            <a className="btn btn-primary c-hire" href="#plans">
+              <span aria-hidden="true">💼</span> Hire me
+            </a>
+          )}
         </nav>
       </header>
 
@@ -96,10 +101,16 @@ export default function ClassicView() {
             </p>
           ))}
           <div className="c-actions">
-            <a className="btn btn-primary" href="#plans">
-              See monthly plans
-            </a>
-            <a className="btn" href={asset(p.resumeUrl)} download>
+            {forClients && (
+              <a className="btn btn-primary" href="#plans">
+                See monthly plans
+              </a>
+            )}
+            <a
+              className={`btn${forClients ? '' : ' btn-primary'}`}
+              href={asset(p.resumeUrl)}
+              download
+            >
               Download résumé (PDF)
             </a>
             <a className="btn" href={`mailto:${p.email}`}>
@@ -164,8 +175,7 @@ export default function ClassicView() {
                       <span className="c-project-icon" aria-hidden="true">
                         <ProjectIcon project={proj} />
                       </span>{' '}
-                      {proj.title}{' '}
-                      <span className="c-year">{proj.year}</span>
+                      {proj.title} <span className="c-year">{proj.year}</span>
                     </h3>
                     <p className="c-platforms">
                       Runs on: {proj.platforms.map(platformLabel).join(' · ')}
@@ -202,10 +212,11 @@ export default function ClassicView() {
           </ul>
         </section>
 
-        <section id="plans" aria-labelledby="plans-h">
-          <h2 id="plans-h">{p.hire.headline}</h2>
-          <Plans />
-        </section>
+        {forClients && (
+          <Suspense fallback={null}>
+            <PlansSection />
+          </Suspense>
+        )}
 
         <section id="skills" aria-labelledby="skills-h">
           <h2 id="skills-h">Skills</h2>
