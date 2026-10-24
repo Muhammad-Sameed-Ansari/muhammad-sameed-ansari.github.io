@@ -11,8 +11,17 @@ type GroupProps = Omit<ThreeElements['group'], 'ref' | 'id'>
 /**
  * Wraps a piece of furniture to make it interactive: hover cursor, a squishy bounce
  * when the character is nearby or the pointer is over it, and click-to-walk-and-use.
+ *
+ * The bounce scales about `pivot`, which defaults to the group's origin. Objects whose
+ * children are placed in world coordinates must pass a pivot on their own wall or floor,
+ * or the squish slides them across the room and into the walls.
  */
-export function Interactive({ id, children, ...props }: GroupProps & { id: ObjectId }) {
+export function Interactive({
+  id,
+  pivot = [0, 0, 0],
+  children,
+  ...props
+}: GroupProps & { id: ObjectId; pivot?: [number, number, number] }) {
   const group = useRef<Group>(null)
   const hovered = useRef(false)
   const energy = useRef(0)
@@ -49,8 +58,12 @@ export function Interactive({ id, children, ...props }: GroupProps & { id: Objec
   }
 
   return (
-    <group ref={group} onPointerOver={onOver} onPointerOut={onOut} onClick={onClick} {...props}>
-      {children}
+    <group onPointerOver={onOver} onPointerOut={onOut} onClick={onClick} {...props}>
+      <group position={pivot}>
+        <group ref={group}>
+          <group position={[-pivot[0], -pivot[1], -pivot[2]]}>{children}</group>
+        </group>
+      </group>
     </group>
   )
 }

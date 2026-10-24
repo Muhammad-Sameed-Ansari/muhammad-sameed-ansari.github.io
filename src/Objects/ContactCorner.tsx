@@ -60,7 +60,8 @@ export function ContactCorner() {
   const wallX = ROOM.minX
   return (
     <group>
-      <Interactive id="contact">
+      {/* Pivot on the wall so the bounce never pushes the door into the wainscot */}
+      <Interactive id="contact" pivot={[wallX, 0, DOOR.z]}>
         <group position={[SIDE_TABLE.x, 0, SIDE_TABLE.z]}>
           <Cyl r={0.3} h={0.06} color="#fff6ec" position={[0, 0.62, 0]} castShadow />
           <Cyl r={0.04} h={0.58} color="#d7a27a" position={[0, 0.3, 0]} />

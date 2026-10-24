@@ -1,4 +1,4 @@
-import { BEANBAG } from '../scene/layout'
+import { BEANBAG, ROOM, WINDOW } from '../scene/layout'
 import { Ball, RBox } from '../scene/primitives'
 import { Bookshelf } from './Bookshelf'
 import { Cat } from './Cat'
@@ -39,7 +39,7 @@ export function Furniture() {
       <Corkboard />
       <Mirror />
       <ContactCorner />
-      <Interactive id="window">
+      <Interactive id="window" pivot={[WINDOW.x, WINDOW.y, ROOM.minZ]}>
         <WindowFrame />
       </Interactive>
       <Plant />
